@@ -1,4 +1,5 @@
 import useIntersectionObserver from '../../hooks/useIntersectionObserver';
+import TechBadge from '../TechBadge/TechBadge';
 import { experiences } from '../../utils/data';
 import './Experience.css';
 
@@ -10,42 +11,59 @@ const Experience = () => {
       <div className={`experience__inner${isVisible ? ' experience__inner--visible' : ''}`}>
         <div className="experience__header">
           <p className="section-label">Experience</p>
-          <h2 className="section-title">Where I've worked</h2>
+          <h2 className="section-title">Roles that shaped how I build</h2>
+          <p className="section-subtitle">
+            My recent work has centered on mobile products where reliability, integrations, and
+            operator confidence matter just as much as the UI.
+          </p>
         </div>
 
         <div className="timeline">
-          {experiences.map((exp, i) => (
-            <div
-              key={exp.company}
+          {experiences.map((experience, index) => (
+            <article
+              key={`${experience.company}-${experience.period}`}
               className="timeline__item"
-              style={{ transitionDelay: `${i * 0.1}s` }}
+              style={{ transitionDelay: `${index * 0.08}s` }}
             >
-              <div className="timeline__line">
+              <div className="timeline__line" aria-hidden="true">
                 <div className="timeline__dot" />
-                {i < experiences.length - 1 && <div className="timeline__connector" />}
+                {index < experiences.length - 1 && <div className="timeline__connector" />}
               </div>
 
               <div className="timeline__card">
                 <div className="timeline__card-top">
                   <div>
-                    <h3 className="timeline__company">{exp.company}</h3>
-                    <p className="timeline__role">{exp.role}</p>
+                    <h3 className="timeline__company">{experience.company}</h3>
+                    <p className="timeline__role">{experience.role}</p>
                   </div>
+
                   <div className="timeline__meta">
-                    <span className="timeline__period">{exp.period}</span>
-                    <span className={`timeline__type timeline__type--${exp.type === 'Internship' ? 'intern' : 'full'}`}>
-                      {exp.type}
+                    <span className="timeline__period">{experience.period}</span>
+                    <span
+                      className={`timeline__type timeline__type--${
+                        experience.type === 'Internship' ? 'intern' : 'full'
+                      }`}
+                    >
+                      {experience.type}
                     </span>
                   </div>
                 </div>
-                <p className="timeline__description">{exp.description}</p>
+
+                <p className="timeline__summary">{experience.summary}</p>
+
+                <ul className="timeline__achievements">
+                  {experience.achievements.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+
                 <div className="timeline__tags">
-                  {exp.tags.map((tag) => (
-                    <span key={tag} className="timeline__tag">{tag}</span>
+                  {experience.tags.map((tag) => (
+                    <TechBadge key={tag} label={tag} variant="tag" />
                   ))}
                 </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>

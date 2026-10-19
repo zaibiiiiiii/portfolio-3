@@ -1,103 +1,221 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import useIntersectionObserver from '../../hooks/useIntersectionObserver';
-import { projects, webProjects } from '../../utils/data';
-import guardControl1 from '../Assets/novus-control-1.png';
-import guardControl2 from '../Assets/novus-control-2.png';
-import guardPro1 from '../Assets/novus-guard-1.png';
-import guardPro2 from '../Assets/novus-guard-2.png';
+import TechBadge from '../TechBadge/TechBadge';
+import { personalInfo, projects, webProjects } from '../../utils/data';
+import controlOverview from '../Assets/novus-control-overview.png';
+import controlTasks from '../Assets/novus-control-tasks.png';
+import proPatrol from '../Assets/novus-pro-patrol.png';
+import proReporting from '../Assets/novus-pro-reporting.png';
+import rayanLogo from '../Assets/assets rayyan instructor/rayan_driving_instructor_logo.webp';
+import rayanProfile from '../Assets/rayan-profile.png';
+import rayanLessons from '../Assets/rayan-lessons.png';
+import rayanReschedule from '../Assets/rayan-reschedule.png';
+import rayanRequests from '../Assets/rayan-requests.png';
+import rayanStatus from '../Assets/rayan-status.png';
+import rayanBooking from '../Assets/rayan-booking.png';
 import './Projects.css';
 
 const imageMap = {
-  control: [guardControl1, guardControl2],
-  pro: [guardPro1, guardPro2],
+  control: [controlOverview, controlTasks],
+  pro: [proPatrol, proReporting],
+  rayan: [rayanProfile, rayanLessons, rayanReschedule, rayanRequests, rayanStatus, rayanBooking],
 };
 
-const AndroidIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M17.523 15.341a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5zm-11.046 0a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5zM.609 8.246l2.455 4.253A1.5 1.5 0 0 0 4.364 13.5H4.5v4.5A1.5 1.5 0 0 0 6 19.5h1.5v2.25a1.5 1.5 0 1 0 3 0V19.5h3v2.25a1.5 1.5 0 1 0 3 0V19.5H18a1.5 1.5 0 0 0 1.5-1.5V13.5h.136a1.5 1.5 0 0 0 1.3-.751l2.455-4.253A12 12 0 0 0 12 3a12 12 0 0 0-11.391 5.246z"/>
-  </svg>
-);
-
-const AppleIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-  </svg>
-);
+const logoMap = {
+  rayan: rayanLogo,
+};
 
 const ExternalIcon = () => (
-  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-    <polyline points="15 3 21 3 21 9"/>
-    <line x1="10" y1="14" x2="21" y2="3"/>
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+    <polyline points="15 3 21 3 21 9" />
+    <line x1="10" y1="14" x2="21" y2="3" />
   </svg>
 );
 
 const AppProject = ({ project, index }) => {
-  const [activeImg, setActiveImg] = useState(0);
+  const [activeImage, setActiveImage] = useState(0);
+  const deviceRef = useRef(null);
+  const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: deviceRef,
+    offset: ['start end', 'end start'],
+  });
+  const deviceY = useTransform(scrollYProgress, [0, 1], [18, -18]);
+  const deviceRotate = useTransform(scrollYProgress, [0, 1], [2.5, -2.5]);
   const images = imageMap[project.imageSet] || [];
+  const logo = logoMap[project.logoKey];
+  const activeGallery = project.gallery?.[activeImage];
 
   return (
-    <div className={`app-project${index % 2 !== 0 ? ' app-project--reverse' : ''}`}>
+    <motion.article
+      className={`app-project${index % 2 !== 0 ? ' app-project--reverse' : ''}`}
+      initial={reduceMotion ? false : { opacity: 0, y: 48 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.12 }}
+      transition={{ duration: 0.7, ease: [0.2, 0.7, 0.2, 1] }}
+    >
       <div className="app-project__content">
-        <span className="app-project__category">{project.category}</span>
-        <h3 className="app-project__name">{project.name}</h3>
-        <p className="app-project__description">{project.description}</p>
+        <div className="app-project__eyebrow">
+          <span className="app-project__category">{project.category}</span>
+          <span className="app-project__status">{project.status}</span>
+        </div>
+
+        <div className="app-project__brand">
+          {logo && (
+            <div className="app-project__logo-shell">
+              <img src={logo} alt={`${project.name} logo`} className="app-project__logo" loading="lazy" />
+            </div>
+          )}
+
+          <div className="app-project__brand-copy">
+            <h3 className="app-project__name">{project.name}</h3>
+          </div>
+        </div>
+        <p className="app-project__summary">{project.summary}</p>
+
+        <div className="app-project__sections">
+          <div className="app-project__section">
+            <span className="app-project__section-label">Challenge</span>
+            <p>{project.challenge}</p>
+          </div>
+          <div className="app-project__section">
+            <span className="app-project__section-label">My role</span>
+            <p>{project.role}</p>
+          </div>
+          <div className="app-project__section">
+            <span className="app-project__section-label">Impact</span>
+            <p>{project.impact}</p>
+          </div>
+        </div>
+
+        <ul className="app-project__highlights">
+          {project.highlights.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
 
         <div className="app-project__tags">
           {project.tags.map((tag) => (
-            <span key={tag} className="app-project__tag">{tag}</span>
+            <TechBadge key={tag} label={tag} variant="tag" />
           ))}
         </div>
 
-        <div className="app-project__platforms">
-          <div className="app-project__platform">
-            <AndroidIcon />
-            <span>Android</span>
-          </div>
-          <div className="app-project__platform">
-            <AppleIcon />
-            <span>iOS</span>
-          </div>
+        <div className="app-project__actions">
+          <a href="#contact" className="app-project__cta app-project__cta--primary">
+            Request a walkthrough
+          </a>
+          <a href={`mailto:${personalInfo.email}`} className="app-project__cta app-project__cta--secondary">
+            Email for details
+          </a>
         </div>
 
-        <div className="app-project__store-btns">
-          <a href={project.storeLinks?.playstore || '#'} className="store-btn store-btn--play" target="_blank" rel="noreferrer">
-            <AndroidIcon />
-            <div>
-              <span className="store-btn__sub">Get it on</span>
-              <span className="store-btn__main">Google Play</span>
+        {project.storeLinks && (
+          <div className="app-project__stores" aria-label={`${project.name} app store links`}>
+            <span className="app-project__stores-label">Get the app</span>
+            <div className="app-project__store-links">
+              <a
+                href={project.storeLinks.ios}
+                target="_blank"
+                rel="noreferrer"
+                className="app-project__store-link"
+                aria-label={`Download ${project.name} from the App Store`}
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M16.7 12.7c0-2.3 1.9-3.4 2-3.4a4.3 4.3 0 0 0-3.4-1.8c-1.4-.1-2.8.9-3.5.9s-1.8-.9-3-.9a4.5 4.5 0 0 0-3.8 2.3c-1.7 2.9-.4 7.2 1.2 9.5.8 1.1 1.6 2.3 2.8 2.2 1.1 0 1.5-.7 2.9-.7s1.8.7 3 .7 1.9-1.1 2.7-2.3a10 10 0 0 0 1.2-2.5 4 4 0 0 1-2.1-4Zm-2.3-6.7a4.1 4.1 0 0 0 1-3 4.2 4.2 0 0 0-2.8 1.4 3.9 3.9 0 0 0-1 2.9 3.5 3.5 0 0 0 2.8-1.3Z" />
+                </svg>
+                <span><small>Download on the</small><strong>App Store</strong></span>
+              </a>
+              <a
+                href={project.storeLinks.android}
+                target="_blank"
+                rel="noreferrer"
+                className="app-project__store-link"
+                aria-label={`Get ${project.name} on Google Play`}
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M4.2 2.8c-.3.3-.5.8-.5 1.5v15.4c0 .7.2 1.2.5 1.5L13 12 4.2 2.8Z" />
+                  <path d="m15.3 9.7-9.8-7 9.8 9.3 3-1.6c1-.6 1-.9 0-1.5l-3-1.6Z" />
+                  <path d="m5.5 21.3 9.8-7-3-2.3-6.8 9.3Z" />
+                  <path d="m15.3 14.3 3-1.6c1-.6 1-.9 0-1.5l-3-1.6-2.3 2.3 2.3 2.4Z" />
+                </svg>
+                <span><small>Get it on</small><strong>Google Play</strong></span>
+              </a>
             </div>
-          </a>
-          <a href={project.storeLinks?.appstore || '#'} className="store-btn store-btn--apple" target="_blank" rel="noreferrer">
-            <AppleIcon />
-            <div>
-              <span className="store-btn__sub">Download on</span>
-              <span className="store-btn__main">App Store</span>
-            </div>
-          </a>
-        </div>
+          </div>
+        )}
+
+        <p className="app-project__platform-copy">
+          {project.platformNote || `Available for ${project.platforms.join(' and ')}.`}
+        </p>
       </div>
 
-      <div className="app-project__visuals">
+      <div className="app-project__visuals" ref={deviceRef}>
         {images.length > 0 && (
           <>
-            <div className="app-project__screenshot-wrapper">
-              <img
-                src={images[activeImg]}
-                alt={`${project.name} screenshot set ${activeImg + 1}`}
-                className="app-project__screenshot"
-              />
-              <div className="app-project__screenshot-glow" />
+            <div className="app-project__device-stage">
+              <div className="app-project__device-orbit app-project__device-orbit--one" aria-hidden="true" />
+              <div className="app-project__device-orbit app-project__device-orbit--two" aria-hidden="true" />
+              <motion.div
+                className="app-project__device"
+                style={{
+                  y: reduceMotion ? 0 : deviceY,
+                  rotateX: reduceMotion ? 0 : deviceRotate,
+                  rotateY: index % 2 === 0 ? -1.5 : 1.5,
+                }}
+              >
+                <span className="app-project__device-button app-project__device-button--power" aria-hidden="true" />
+                <span className="app-project__device-button app-project__device-button--volume" aria-hidden="true" />
+                <div className="app-project__device-screen">
+                  <div className="app-project__device-camera" aria-hidden="true">
+                    <span />
+                  </div>
+                  <img
+                    src={images[activeImage]}
+                    alt={`${project.name} app screen: ${activeGallery?.label || 'preview'}`}
+                    className="app-project__image"
+                    loading="lazy"
+                  />
+                  <span className="app-project__device-home" aria-hidden="true" />
+                </div>
+              </motion.div>
+              <div className="app-project__device-caption">
+                <span className="app-project__device-caption-dot" />
+                <span>Live app preview</span>
+                <span className="app-project__device-caption-separator" />
+                <span>{activeGallery?.label}</span>
+              </div>
             </div>
-            {images.length > 1 && (
-              <div className="app-project__img-tabs">
-                {images.map((_, i) => (
+
+            {activeGallery && (
+              <div className="app-project__caption">
+                <span className="app-project__caption-label">{activeGallery.label}</span>
+                <p className="app-project__caption-text">{activeGallery.caption}</p>
+              </div>
+            )}
+
+            {project.gallery?.length > 1 && (
+              <div className="app-project__thumbs" aria-label={`${project.name} screenshots`}>
+                {project.gallery.map((item, thumbIndex) => (
                   <button
-                    key={i}
-                    className={`app-project__img-tab${activeImg === i ? ' app-project__img-tab--active' : ''}`}
-                    onClick={() => setActiveImg(i)}
+                    key={item.label}
+                    type="button"
+                    className={`app-project__thumb${activeImage === thumbIndex ? ' app-project__thumb--active' : ''}`}
+                    onClick={() => setActiveImage(thumbIndex)}
+                    aria-label={`Show ${project.name} ${item.label}`}
+                    aria-pressed={activeImage === thumbIndex}
                   >
-                    {i === 0 ? 'Screens 1–4' : 'Screens 5–8'}
+                    <img
+                      src={images[thumbIndex]}
+                      alt=""
+                      className="app-project__thumb-image"
+                      loading="lazy"
+                      aria-hidden="true"
+                    />
+                    <span className="app-project__thumb-label">
+                      {item.shortLabel || item.label}
+                    </span>
                   </button>
                 ))}
               </div>
@@ -105,54 +223,61 @@ const AppProject = ({ project, index }) => {
           </>
         )}
       </div>
-    </div>
+    </motion.article>
   );
 };
 
 const OtherProject = ({ project }) => (
-  <div className="other-project">
-    <div className="other-project__top">
-      <span className="other-project__category">{project.category}</span>
-      <div className="other-project__platforms">
-        <AndroidIcon />
-        <AppleIcon />
-      </div>
-    </div>
+  <article className="other-project">
+    <span className="other-project__category">{project.category}</span>
     <h4 className="other-project__name">{project.name}</h4>
-    <p className="other-project__description">{project.description}</p>
+    <p className="other-project__summary">{project.summary}</p>
+    {project.highlights?.length > 0 && (
+      <ul className="other-project__highlights">
+        {project.highlights.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
+    )}
+    <p className="other-project__impact">{project.impact}</p>
     <div className="other-project__tags">
       {project.tags.map((tag) => (
-        <span key={tag} className="other-project__tag">{tag}</span>
+        <TechBadge key={tag} label={tag} variant="tag" />
       ))}
     </div>
-  </div>
+  </article>
 );
 
 const Projects = () => {
   const [ref, isVisible] = useIntersectionObserver();
-  const featuredProjects = projects.filter((p) => p.featured);
-  const otherProjects = projects.filter((p) => !p.featured);
+  const featuredProjects = projects.filter((project) => project.featured);
+  const otherProjects = projects.filter((project) => !project.featured);
 
   return (
     <section id="projects" className="projects" ref={ref}>
       <div className={`projects__inner${isVisible ? ' projects__inner--visible' : ''}`}>
         <div className="projects__header">
           <p className="section-label">Projects</p>
-          <h2 className="section-title">Things I've built</h2>
+          <h2 className="section-title">Mobile products and AI systems, built for real work</h2>
           <p className="section-subtitle">
-            Production apps shipped to real users, from enterprise security platforms to ERP-integrated tools.
+            These are the projects that best show how I think: translating difficult workflows into
+            mobile tools that stay dependable for the people using them.
+          </p>
+          <p className="projects__note">
+            Much of my recent work is private client software, so I share the product thinking and system
+            design rather than internal metrics or store links.
           </p>
         </div>
 
         <div className="projects__featured">
-          {featuredProjects.map((project, i) => (
-            <AppProject key={project.id} project={project} index={i} />
+          {featuredProjects.map((project, index) => (
+            <AppProject key={project.id} project={project} index={index} />
           ))}
         </div>
 
         {otherProjects.length > 0 && (
           <div className="projects__other-section">
-            <h3 className="projects__other-title">More Projects</h3>
+            <h3 className="projects__other-title">Additional mobile work</h3>
             <div className="projects__other-grid">
               {otherProjects.map((project) => (
                 <OtherProject key={project.id} project={project} />
@@ -162,20 +287,20 @@ const Projects = () => {
         )}
 
         <div className="projects__web-section">
-          <h3 className="projects__other-title">Web Projects</h3>
+          <h3 className="projects__other-title">Selected web work</h3>
           <div className="projects__web-grid">
-            {webProjects.map((wp) => (
+            {webProjects.map((project) => (
               <a
-                key={wp.name}
-                href={wp.url}
+                key={project.name}
+                href={project.url}
                 target="_blank"
                 rel="noreferrer"
                 className="web-project"
               >
                 <div className="web-project__content">
-                  <span className="web-project__category">{wp.category}</span>
-                  <span className="web-project__name">{wp.name}</span>
-                  <span className="web-project__url">{wp.url.replace('https://', '')}</span>
+                  <TechBadge label={project.category} variant="tag" />
+                  <span className="web-project__name">{project.name}</span>
+                  <span className="web-project__blurb">{project.blurb}</span>
                 </div>
                 <ExternalIcon />
               </a>
