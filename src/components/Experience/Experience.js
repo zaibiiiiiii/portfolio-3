@@ -25,11 +25,6 @@ const Experience = () => {
               className="timeline__item"
               style={{ transitionDelay: `${index * 0.08}s` }}
             >
-              <div className="timeline__line" aria-hidden="true">
-                <div className="timeline__dot" />
-                {index < experiences.length - 1 && <div className="timeline__connector" />}
-              </div>
-
               <div className="timeline__card">
                 <div className="timeline__card-top">
                   <div>

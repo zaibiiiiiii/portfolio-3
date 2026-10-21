@@ -1,41 +1,16 @@
 .skills {
   position: relative;
-  padding: clamp(84px, 9vw, 124px) 32px;
-  background: rgba(232, 240, 237, 0.62);
-  overflow: hidden;
-}
-
-.skills::before {
-  content: '';
-  position: absolute;
-  inset: auto -120px -120px auto;
-  width: 320px;
-  height: 320px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(22, 128, 113, 0.1) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-/* Secondary decorative glow */
-.skills::after {
-  content: '';
-  position: absolute;
-  top: 10%;
-  left: -100px;
-  width: 280px;
-  height: 280px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(18, 104, 121, 0.06) 0%, transparent 70%);
-  filter: blur(40px);
-  pointer-events: none;
+  padding: clamp(96px, 10vw, 150px) 32px;
+  border-top: 1px solid var(--hairline);
+  background: var(--bg);
 }
 
 .skills__inner {
   position: relative;
-  max-width: 1240px;
+  max-width: 1200px;
   margin: 0 auto;
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateY(24px);
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
@@ -49,13 +24,13 @@
 }
 
 .skills__header {
-  margin-bottom: 54px;
+  margin-bottom: 60px;
 }
 
 .skills__groups {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
+  gap: 0 clamp(40px, 5vw, 72px);
 }
 
 .skills__groups > .skill-group:last-child {
@@ -63,58 +38,41 @@
 }
 
 .skill-group {
-  padding: clamp(22px, 3vw, 30px);
-  border-radius: 22px;
-  background: rgba(255, 255, 255, 0.88);
-  border: 1px solid var(--border);
-  box-shadow: 0 10px 32px rgba(25, 55, 57, 0.055);
+  padding: 26px 0 30px;
+  border-top: 1px solid var(--ink);
+  background: none;
   opacity: 0;
-  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-  position: relative;
-  overflow: hidden;
+  transition: none;
 }
 
 .skill-group:hover {
-  border-color: rgba(18, 104, 121, 0.2);
-  transform: translateY(-3px);
-  box-shadow: 0 22px 52px rgba(25, 55, 57, 0.1);
+  transform: none;
 }
 
-/* Gradient glow on hover */
 .skill-group::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 30% 0%, rgba(18, 104, 121, 0.05) 0%, transparent 60%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  pointer-events: none;
-}
-
-.skill-group:hover::before {
-  opacity: 1;
+  display: none;
 }
 
 .skill-group__title {
   font-family: var(--font-display);
-  font-size: 28px;
-  line-height: 1.1;
-  letter-spacing: -0.035em;
-  color: var(--text-primary);
-  margin-bottom: 10px;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 6px;
 }
 
 .skill-group__description {
   font-size: 14px;
-  line-height: 1.75;
-  color: var(--text-secondary);
-  margin-bottom: 22px;
+  line-height: 1.65;
+  color: var(--text-muted);
+  margin-bottom: 20px;
 }
 
 .skill-group__items {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 @media (max-width: 880px) {
@@ -125,6 +83,6 @@
 
 @media (max-width: 640px) {
   .skills {
-    padding: 78px 20px;
+    padding: 80px 20px;
   }
 }

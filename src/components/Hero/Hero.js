@@ -16,7 +16,7 @@ const Hero = () => {
           </p>
 
           <h1 className="hero__headline animate-fade-up" style={{ animationDelay: '0.2s', opacity: 0 }}>
-            {personalInfo.headline}
+            Mobile apps &amp; <em>grounded AI.</em>
           </h1>
 
           <p className="hero__description animate-fade-up" style={{ animationDelay: '0.32s', opacity: 0 }}>
