@@ -1,56 +1,252 @@
+/* Two-layer viewfinder: the artwork is pinned to the viewport and clipped to
+   this section, so the glass cards travel across a still image. */
 .parallax-band {
   position: relative;
-  display: grid;
-  place-items: center;
-  min-height: clamp(340px, 46vh, 460px);
-  overflow: hidden;
-  padding: 80px 24px;
-  text-align: center;
+  padding: clamp(110px, 20vh, 220px) 24px;
+  background: #0c1316;
 }
 
-/* Pinned background: the artwork holds still while sections slide over it */
-.parallax-band__bg {
+.parallax-band__img-wrap {
   position: absolute;
   inset: 0;
-  background-position: center;
-  background-size: cover;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
+  z-index: 0;
+  overflow: hidden;
 }
 
-.parallax-band__content {
+/* Scrim: darker at the edges so the band frames itself against the light page */
+.parallax-band__img-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 17, 20, 0.94),
+    rgba(10, 17, 20, 0.62) 26%,
+    rgba(10, 17, 20, 0.62) 74%,
+    rgba(10, 17, 20, 0.94)
+  );
+}
+
+.parallax-band__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* clip-path keeps the viewport-fixed image inside this section only — the
+   iOS-safe replacement for background-attachment: fixed */
+@supports (clip-path: inset(0)) {
+  .parallax-band {
+    clip-path: inset(0);
+  }
+
+  .parallax-band__img-wrap {
+    position: fixed;
+  }
+}
+
+.parallax-band__track {
   position: relative;
-  max-width: 760px;
+  z-index: 1;
+  max-width: 1080px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(56px, 9vh, 110px);
 }
 
-.parallax-band__overline {
+/* The moving layer: frosted glass slides over the pinned artwork, and the
+   slice of image behind the blur changes as it travels */
+.parallax-card {
+  max-width: 620px;
+  padding: 34px 36px 30px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 20px;
+  background: rgba(18, 30, 33, 0.28);
+  -webkit-backdrop-filter: blur(14px) saturate(1.25);
+  backdrop-filter: blur(14px) saturate(1.25);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.38);
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .parallax-card {
+    background: rgba(12, 19, 22, 0.85);
+  }
+}
+
+.parallax-card--quote {
+  max-width: 680px;
+}
+
+.parallax-card--right {
+  align-self: flex-end;
+}
+
+.parallax-card--left {
+  align-self: flex-start;
+  margin-left: clamp(0px, 6vw, 90px);
+}
+
+.parallax-card__overline {
   font-family: var(--font-mono);
   font-size: 11.5px;
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: #66c9ae;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 
-.parallax-band__quote {
+.parallax-card__quote {
   font-family: var(--font-display);
-  font-size: clamp(24px, 3.4vw, 40px);
-  line-height: 1.25;
+  font-size: clamp(22px, 2.6vw, 32px);
+  line-height: 1.3;
   font-weight: 600;
   letter-spacing: -0.02em;
   color: #f1f7f6;
   text-wrap: balance;
 }
 
+.parallax-card__foot {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(241, 247, 246, 0.55);
+}
+
+.parallax-card__foot::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: rgba(102, 201, 174, 0.6);
+}
+
+.parallax-card__head {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 10px;
+}
+
+.parallax-card__index {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: #66c9ae;
+}
+
+.parallax-card__title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #f1f7f6;
+}
+
+.parallax-card__body {
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(223, 233, 232, 0.86);
+}
+
+.parallax-card__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+  list-style: none;
+}
+
+.parallax-card__chips li {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #cfe4e0;
+  padding: 7px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.parallax-card__detail {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.parallax-card__detail-label {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(241, 247, 246, 0.5);
+}
+
+.parallax-card__detail-value {
+  font-size: 14px;
+  font-weight: 500;
+  color: #cfe4e0;
+}
+
+.parallax-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8fe3c7;
+  transition: gap var(--transition), color var(--transition);
+}
+
+.parallax-card__cta:hover,
+.parallax-card__cta:focus-visible {
+  gap: 12px;
+  color: #fff;
+}
+
 @media (max-width: 760px) {
-  /* iOS ignores background-attachment: fixed — let it scroll instead */
-  .parallax-band__bg {
-    background-attachment: scroll;
+  .parallax-band {
+    padding: 96px 20px;
   }
 
-  .parallax-band {
-    padding: 64px 20px;
-    min-height: 0;
+  .parallax-band__track {
+    gap: 44px;
+  }
+
+  .parallax-card {
+    max-width: 100%;
+    padding: 26px 22px 24px;
+    -webkit-backdrop-filter: blur(10px) saturate(1.2);
+    backdrop-filter: blur(10px) saturate(1.2);
+  }
+
+  .parallax-card--right,
+  .parallax-card--left {
+    align-self: stretch;
+    margin-left: 0;
+  }
+}
+
+/* Pinned backgrounds are still motion to a reduced-motion user — let it scroll */
+@media (prefers-reduced-motion: reduce) {
+  .parallax-band__img-wrap {
+    position: absolute;
   }
 }
