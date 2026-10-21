@@ -152,13 +152,31 @@ export const projects = [
       'Built and refined the cross-platform mobile experience, turning complex operational workflows into a usable control surface.',
     impact:
       'Gave teams a clearer view of live field activity and a more reliable way to coordinate guards, vehicles, contracts, and alerts.',
-    highlights: [
-      'Real-time job and event visibility for operations teams.',
-      'GPS patrol oversight with NFC checkpoint verification.',
-      'Officer, vehicle, and geofence monitoring in one workflow.',
-      'Push notification support for time-sensitive incidents.',
+    features: [
+      {
+        icon: 'overview',
+        title: 'Live operations overview',
+        description: 'See scheduled, upcoming, active, and completed jobs and patrols in one control surface.',
+      },
+      {
+        icon: 'patrol',
+        title: 'Patrols with route context',
+        description: 'Review ordered waypoints, indoor floor plans, and an officer’s walked trail against the remaining route.',
+      },
+      {
+        icon: 'response',
+        title: 'Actionable SOS context',
+        description: 'Bring active patrols, the nearest waypoint, and nearby in-progress jobs into the response view.',
+      },
     ],
-    tags: ['Flutter', 'Firebase', 'GPS', 'NFC', 'REST API'],
+    highlights: [
+      'Operations dashboards organize scheduled, upcoming, live, and completed work across jobs and patrols.',
+      'Patrol templates support recurring rounds, ordered waypoints, floor plans, and manual, automatic, QR, NFC, or beacon registration.',
+      'Live patrol maps overlay indoor floor plans and distinguish the officer’s walked trail from the remaining route.',
+      'SOS response context can surface active patrols, the nearest waypoint, and nearby in-progress jobs.',
+      'Officer, site, geofence, task, check-call, and job-reporting modules bring field oversight into one control app.',
+    ],
+    tags: ['Flutter', 'Firebase', 'GPS', 'Indoor Maps', 'Geofencing', 'SOS', 'NFC', 'QR'],
     platforms: ['Android', 'iOS'],
     storeLinks: {
       ios: 'https://apps.apple.com/us/app/novus-control/id1464115021',
@@ -170,8 +188,8 @@ export const projects = [
         caption: 'A snapshot of live activity, recent events, and key operational signals.',
       },
       {
-        label: 'Contracts and tasks',
-        caption: 'Tasking and contract workflows built for day-to-day coordination.',
+        label: 'Task management',
+        caption: 'A task list with scheduled, active, and completed work at a glance.',
       },
     ],
     imageSet: 'control',
@@ -183,20 +201,45 @@ export const projects = [
     category: 'Field Officer App',
     status: 'Private client product',
     summary:
-      'Field app used by officers to complete patrols, verify checkpoints, report incidents, and stay connected while on the move.',
+      'Field app for GPS-aware and indoor patrols, QR/NFC checkpoint verification, wearable safety devices, site cameras, incident reporting, and real-time communications.',
     challenge:
       'Field teams needed a mobile app that stayed dependable during travel, patrol work, and low-connectivity conditions.',
     role:
       'Owned core mobile workflows spanning patrol management, identity checks, reporting, and real-time communication.',
     impact:
       'Helped officers complete tasks with less friction while giving operations teams more trustworthy field data.',
-    highlights: [
-      'Waypoint-based patrol flows with GPS tracking and geofencing.',
-      'Identity checks using PIN, face recognition, and NFC.',
-      'Offline mode with SQLite for work that cannot pause on weak networks.',
-      'Socket.IO chat, SOS alerts, and reporting for fast field coordination.',
+    features: [
+      {
+        icon: 'checkpoint',
+        title: 'Checkpoint verification without geofencing',
+        description: 'Officers can confirm a checkpoint with QR or NFC scans, without requiring a GPS geofence.',
+      },
+      {
+        icon: 'positioning',
+        title: 'Indoor positioning and 3D routes',
+        description: 'Site-grid BLE anchors and RSSI-based WKNN can provide floor-aware fixes when GPS is unavailable; support is release-dependent.',
+      },
+      {
+        icon: 'wearable',
+        title: 'Wearable safety integrations',
+        description: 'BLE GATT flows connect V.ALRT SOS buttons and J-Style bracelets, surfacing available health and device readings.',
+      },
+      {
+        icon: 'camera',
+        title: 'Site cameras without GPS',
+        description: 'Discover IP cameras and NVRs over site Wi-Fi, then view snapshots, live JPEG/MJPEG frames, or the camera web UI.',
+      },
     ],
-    tags: ['Flutter', 'Socket.IO', 'SQLite', 'Face Recognition', 'NFC'],
+    highlights: [
+      'Patrols support ordered rounds and Auto, Manual, QR, or NFC checkpoint verification; QR/NFC scans can confirm a checkpoint without a GPS geofence.',
+      'Indoor route tooling includes room, door, and stair detection, walkability and pathfinding, multi-floor plans, route playback, and 3D previews.',
+      'A site-grid BLE IPS path uses multiple anchors and RSSI-based WKNN to publish floor-aware officer fixes when GPS is off; GPS remains the fallback without a fresh indoor fix, and the entry is release-dependent.',
+      'Wearable safety flows pair V.ALRT SOS buttons and J-Style 2208A/V1S bracelets over BLE GATT; the bracelet panel surfaces heart-rate, SpO₂, activity, and battery readings when notified.',
+      'Eview 4G pendants have a separate IMEI-bound, backend/TCP setup path rather than phone BLE or a wearable-provided GPS location.',
+      'Site Devices discovers IP cameras and NVRs over site Wi-Fi and presents snapshots, live JPEG/MJPEG frames, or the camera web UI without needing GPS.',
+      'Identity checks, offline SQLite-backed workflows, SOS alerts, incident reporting, and real-time chat support field operations.',
+    ],
+    tags: ['Flutter', 'GPS', 'BLE IPS', 'Wearable BLE', 'IP Cameras', 'Floor-plan Routing', '3D Maps', 'Socket.IO', 'SQLite', 'Face Recognition', 'NFC', 'QR'],
     platforms: ['Android', 'iOS'],
     storeLinks: {
       ios: 'https://apps.apple.com/us/app/novus-guard/id1418564392',
@@ -204,12 +247,12 @@ export const projects = [
     },
     gallery: [
       {
-        label: 'Patrol and task flow',
-        caption: 'Core field workflows designed for quick action during active shifts.',
+        label: 'Patrol overview',
+        caption: 'A field patrol list organized by site, with route activity, check calls, and task context.',
       },
       {
-        label: 'Identity and reporting',
-        caption: 'Verification, reporting, and communication tools for frontline use.',
+        label: 'Reporting and response',
+        caption: 'Live operational reporting and response actions help teams act quickly during incidents or changing priorities.',
       },
     ],
     imageSet: 'pro',
@@ -230,7 +273,7 @@ export const projects = [
       'Adds a more consumer-facing case study to the portfolio and shows range beyond operations-heavy enterprise tools.',
     highlights: [
       'Dedicated app branding with an included product logo.',
-      'Six polished mobile screens presented as part of one coherent experience.',
+      'Six supplied app screens presented as one consistent mobile experience.',
       'A cleaner, more approachable UI direction for a service-based business.',
       'Useful as a contrast to the more technical enterprise products elsewhere in the portfolio.',
     ],
@@ -240,34 +283,34 @@ export const projects = [
       'Presented here as a visual case study using the available app logo and screenshots.',
     gallery: [
       {
-        shortLabel: '01',
-        label: 'Screen 01',
-        caption: 'Preview from the branded mobile experience for the Rayan Driving Instructor app.',
+        shortLabel: 'Profile',
+        label: 'Learner profile',
+        caption: 'Learner account details and lesson preferences.',
       },
       {
-        shortLabel: '02',
-        label: 'Screen 02',
-        caption: 'Another user-facing screen showing the consumer-focused visual direction.',
+        shortLabel: 'Home',
+        label: 'Home and instructors',
+        caption: 'A learner dashboard with lesson shortcuts and instructor discovery.',
       },
       {
-        shortLabel: '03',
-        label: 'Screen 03',
-        caption: 'Part of the app showcase highlighting the interface styling and brand presentation.',
+        shortLabel: 'Lessons',
+        label: 'Upcoming lessons',
+        caption: 'Scheduled lessons with instructor, time, location, and rescheduling actions.',
       },
       {
-        shortLabel: '04',
-        label: 'Screen 04',
-        caption: 'A continuation of the UI system used across the driving instructor app.',
+        shortLabel: 'Reschedule',
+        label: 'Reschedule lesson',
+        caption: 'A dialog for choosing a new lesson date, time, and reason.',
       },
       {
-        shortLabel: '05',
-        label: 'Screen 05',
-        caption: 'Additional screen from the app gallery included in the portfolio case study.',
+        shortLabel: 'Requests',
+        label: 'Lesson requests',
+        caption: 'Requested lessons with dates, locations, and confirmation states.',
       },
       {
-        shortLabel: '06',
-        label: 'Screen 06',
-        caption: 'Final preview from the current Rayan Driving Instructor app asset set.',
+        shortLabel: 'Booking',
+        label: 'Lesson booking',
+        caption: 'A form for lesson type, transmission, duration, and preferred timing.',
       },
     ],
     imageSet: 'rayan',
@@ -320,10 +363,10 @@ export const projects = [
 
 export const webProjects = [
   {
-    name: 'Ancaster Event Center',
-    url: 'https://ancastereventcenter.com',
-    category: 'WordPress',
-    blurb: 'Venue marketing site with service-led structure and clear conversion paths.',
+    name: 'Novus Guard',
+    url: 'https://www.novusguard.co.uk/',
+    category: 'Security Platform',
+    blurb: 'Operational security website focused on trust, monitoring, and field-ready service capabilities.',
   },
   {
     name: 'TechFlow',

@@ -34,6 +34,24 @@ const ExternalIcon = () => (
   </svg>
 );
 
+const CapabilityIcon = ({ type }) => {
+  const icons = {
+    overview: <><rect x="3" y="3" width="8" height="8" rx="2" /><rect x="13" y="3" width="8" height="5" rx="2" /><rect x="13" y="10" width="8" height="11" rx="2" /><rect x="3" y="13" width="8" height="8" rx="2" /></>,
+    patrol: <><circle cx="6" cy="18" r="2" /><circle cx="18" cy="6" r="2" /><path d="M8 18h3a3 3 0 0 0 3-3V9a3 3 0 0 1 3-3" /></>,
+    response: <><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z" /><path d="M12 8v4m0 4h.01" /></>,
+    checkpoint: <><path d="M4 4h5v5H4zM15 4h5v5h-5zM4 15h5v5H4z" /><path d="M15 15h2v2h-2zm4 0v5m-4-1h2m2-4h1" /></>,
+    positioning: <><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" /><circle cx="12" cy="10" r="2.5" /></>,
+    wearable: <><rect x="7" y="5" width="10" height="14" rx="3" /><path d="m9 2-1 3m7-3 1 3m-7 14 1 3m7-3 1 3M10 12h4" /></>,
+    camera: <><path d="M4 7h3l2-3h6l2 3h3a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2Z" /><circle cx="12" cy="13" r="3" /></>,
+  };
+
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      {icons[type] || icons.overview}
+    </svg>
+  );
+};
+
 const AppProject = ({ project, index }) => {
   const [activeImage, setActiveImage] = useState(0);
   const deviceRef = useRef(null);
@@ -75,6 +93,22 @@ const AppProject = ({ project, index }) => {
         </div>
         <p className="app-project__summary">{project.summary}</p>
 
+        {project.features?.length > 0 && (
+          <div className="app-project__features" aria-label={`${project.name} key capabilities`}>
+            {project.features.map((feature) => (
+              <article className="app-project__feature" key={feature.title}>
+                <span className="app-project__feature-icon">
+                  <CapabilityIcon type={feature.icon} />
+                </span>
+                <div>
+                  <h4>{feature.title}</h4>
+                  <p>{feature.description}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
+
         <div className="app-project__sections">
           <div className="app-project__section">
             <span className="app-project__section-label">Challenge</span>
@@ -90,11 +124,14 @@ const AppProject = ({ project, index }) => {
           </div>
         </div>
 
-        <ul className="app-project__highlights">
-          {project.highlights.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
+        <details className="app-project__details">
+          <summary>More implementation details</summary>
+          <ul className="app-project__highlights">
+            {project.highlights.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </details>
 
         <div className="app-project__tags">
           {project.tags.map((tag) => (
@@ -123,7 +160,7 @@ const AppProject = ({ project, index }) => {
                 aria-label={`Download ${project.name} from the App Store`}
               >
                 <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M16.7 12.7c0-2.3 1.9-3.4 2-3.4a4.3 4.3 0 0 0-3.4-1.8c-1.4-.1-2.8.9-3.5.9s-1.8-.9-3-.9a4.5 4.5 0 0 0-3.8 2.3c-1.7 2.9-.4 7.2 1.2 9.5.8 1.1 1.6 2.3 2.8 2.2 1.1 0 1.5-.7 2.9-.7s1.8.7 3 .7 1.9-1.1 2.7-2.3a10 10 0 0 0 1.2-2.5 4 4 0 0 1-2.1-4Zm-2.3-6.7a4.1 4.1 0 0 0 1-3 4.2 4.2 0 0 0-2.8 1.4 3.9 3.9 0 0 0-1 2.9 3.5 3.5 0 0 0 2.8-1.3Z" />
+                  <path fill="currentColor" d="M16.7 12.7c0-2.3 1.9-3.4 2-3.4a4.3 4.3 0 0 0-3.4-1.8c-1.4-.1-2.8.9-3.5.9s-1.8-.9-3-.9a4.5 4.5 0 0 0-3.8 2.3c-1.7 2.9-.4 7.2 1.2 9.5.8 1.1 1.6 2.3 2.8 2.2 1.1 0 1.5-.7 2.9-.7s1.8.7 3 .7 1.9-1.1 2.7-2.3a10 10 0 0 0 1.2-2.5 4 4 0 0 1-2.1-4Zm-2.3-6.7a4.1 4.1 0 0 0 1-3 4.2 4.2 0 0 0-2.8 1.4 3.9 3.9 0 0 0-1 2.9 3.5 3.5 0 0 0 2.8-1.3Z" />
                 </svg>
                 <span><small>Download on the</small><strong>App Store</strong></span>
               </a>
@@ -135,10 +172,10 @@ const AppProject = ({ project, index }) => {
                 aria-label={`Get ${project.name} on Google Play`}
               >
                 <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M4.2 2.8c-.3.3-.5.8-.5 1.5v15.4c0 .7.2 1.2.5 1.5L13 12 4.2 2.8Z" />
-                  <path d="m15.3 9.7-9.8-7 9.8 9.3 3-1.6c1-.6 1-.9 0-1.5l-3-1.6Z" />
-                  <path d="m5.5 21.3 9.8-7-3-2.3-6.8 9.3Z" />
-                  <path d="m15.3 14.3 3-1.6c1-.6 1-.9 0-1.5l-3-1.6-2.3 2.3 2.3 2.4Z" />
+                  <path fill="#34A853" d="M4.2 2.8c-.3.3-.5.8-.5 1.5v15.4c0 .7.2 1.2.5 1.5L13 12 4.2 2.8Z" />
+                  <path fill="#4285F4" d="m15.3 9.7-9.8-7 9.8 9.3 3-1.6c1-.6 1-.9 0-1.5l-3-1.6Z" />
+                  <path fill="#EA4335" d="m5.5 21.3 9.8-7-3-2.3-6.8 9.3Z" />
+                  <path fill="#FBBC04" d="m15.3 14.3 3-1.6c1-.6 1-.9 0-1.5l-3-1.6-2.3 2.3 2.3 2.4Z" />
                 </svg>
                 <span><small>Get it on</small><strong>Google Play</strong></span>
               </a>
@@ -180,12 +217,12 @@ const AppProject = ({ project, index }) => {
                   <span className="app-project__device-home" aria-hidden="true" />
                 </div>
               </motion.div>
-              <div className="app-project__device-caption">
-                <span className="app-project__device-caption-dot" />
-                <span>Live app preview</span>
-                <span className="app-project__device-caption-separator" />
-                <span>{activeGallery?.label}</span>
-              </div>
+            </div>
+            <div className="app-project__device-caption">
+              <span className="app-project__device-caption-dot" />
+              <span>Product screen</span>
+              <span className="app-project__device-caption-separator" />
+              <span>{activeGallery?.label}</span>
             </div>
 
             {activeGallery && (
@@ -258,7 +295,7 @@ const Projects = () => {
       <div className={`projects__inner${isVisible ? ' projects__inner--visible' : ''}`}>
         <div className="projects__header">
           <p className="section-label">Projects</p>
-          <h2 className="section-title">Mobile products and AI systems, built for real work</h2>
+          <h2 className="section-title">Mobile products. Grounded AI. <span className="projects__title-highlight">Built for real work.</span></h2>
           <p className="section-subtitle">
             These are the projects that best show how I think: translating difficult workflows into
             mobile tools that stay dependable for the people using them.
@@ -277,7 +314,7 @@ const Projects = () => {
 
         {otherProjects.length > 0 && (
           <div className="projects__other-section">
-            <h3 className="projects__other-title">Additional mobile work</h3>
+            <h3 className="projects__other-title">Additional product work</h3>
             <div className="projects__other-grid">
               {otherProjects.map((project) => (
                 <OtherProject key={project.id} project={project} />

@@ -32,23 +32,28 @@ const LocationIcon = () => (
 
 const Contact = () => {
   const [ref, isVisible] = useIntersectionObserver();
-  const [copied, setCopied] = useState(false);
+  const [copyStatus, setCopyStatus] = useState('');
 
   useEffect(() => {
-    if (!copied) {
+    if (!copyStatus) {
       return undefined;
     }
 
-    const timeout = window.setTimeout(() => setCopied(false), 2200);
+    const timeout = window.setTimeout(() => setCopyStatus(''), 3000);
     return () => window.clearTimeout(timeout);
-  }, [copied]);
+  }, [copyStatus]);
 
   const handleCopyEmail = async () => {
+    if (!navigator.clipboard?.writeText) {
+      setCopyStatus('unavailable');
+      return;
+    }
+
     try {
       await navigator.clipboard.writeText(personalInfo.email);
-      setCopied(true);
-    } catch (error) {
-      window.location.href = `mailto:${personalInfo.email}`;
+      setCopyStatus('copied');
+    } catch {
+      setCopyStatus('failed');
     }
   };
 
@@ -77,9 +82,14 @@ const Contact = () => {
               Email me directly
             </a>
             <button type="button" className="contact__cta contact__cta--secondary" onClick={handleCopyEmail}>
-              {copied ? 'Email copied' : 'Copy email address'}
+              {copyStatus === 'copied' ? 'Email copied' : 'Copy email address'}
             </button>
           </div>
+          <p className="contact__copy-status" role="status" aria-live="polite" aria-atomic="true">
+            {copyStatus === 'copied' && 'Email address copied to clipboard.'}
+            {copyStatus === 'unavailable' && 'Clipboard access is unavailable in this browser. Use the email link above.'}
+            {copyStatus === 'failed' && 'Clipboard access was blocked. Use the email link above.'}
+          </p>
         </div>
 
         <div className="contact__right">
@@ -103,7 +113,7 @@ const Contact = () => {
                   </div>
                 </a>
 
-                <a href={`tel:${personalInfo.phone}`} className="contact__info-item">
+                <a href={`tel:${personalInfo.phone.replace(/[^\d+]/g, '')}`} className="contact__info-item">
                   <span className="contact__info-icon">
                     <PhoneIcon />
                   </span>
@@ -159,14 +169,47 @@ const Contact = () => {
       </div>
 
       <footer className="footer">
-        <p className="footer__text">
-          Designed and built by <span className="footer__name">Syed Zohaib Kashif</span> - {new Date().getFullYear()}
-        </p>
-        <div className="footer__stack">
-          <TechBadge label="Flutter" variant="footer" />
-          <TechBadge label="React Native" variant="footer" />
-          <TechBadge label="Firebase" variant="footer" />
-          <TechBadge label="Socket.IO" variant="footer" />
+        <div className="footer__main">
+          <div className="footer__brand">
+            <a className="footer__identity" href="#hero" aria-label="Syed Zohaib Kashif, back to top">
+              <span className="footer__mark" aria-hidden="true">SZK</span>
+              <span>
+                <strong>Syed Zohaib Kashif</strong>
+                <small>Mobile Engineer · Karachi, Pakistan</small>
+              </span>
+            </a>
+            <p>Reliable mobile products and grounded AI workflows, built for real-world teams.</p>
+          </div>
+
+          <nav className="footer__nav" aria-label="Footer navigation">
+            <h3>Explore</h3>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Selected work</a>
+          </nav>
+
+          <div className="footer__connect">
+            <h3>Let’s connect</h3>
+            <a href={`mailto:${personalInfo.email}`}>{personalInfo.email}</a>
+            <a href={personalInfo.linkedin} target="_blank" rel="noreferrer">
+              <LinkedInIcon />
+              LinkedIn
+            </a>
+            <a className="footer__top-link" href="#hero">Back to top <span aria-hidden="true">↑</span></a>
+          </div>
+        </div>
+
+        <div className="footer__bottom">
+          <p className="footer__text">
+            © {new Date().getFullYear()} Syed Zohaib Kashif <span aria-hidden="true">·</span> Designed and built with care
+          </p>
+          <div className="footer__stack" aria-label="Selected technologies">
+            <TechBadge label="Flutter" variant="footer" />
+            <TechBadge label="React Native" variant="footer" />
+            <TechBadge label="Firebase" variant="footer" />
+            <TechBadge label="Socket.IO" variant="footer" />
+          </div>
         </div>
       </footer>
     </section>
