@@ -20,6 +20,9 @@ const Hero = () => {
     <section id="hero" className="hero" ref={heroRef}>
       <div className="hero__inner">
         <motion.div className="hero__content" style={{ y: contentY, opacity: contentOpacity }}>
+          <span className="hero__availability-badge animate-fade-up" style={{ animationDelay: '0.02s', opacity: 0 }}>
+            Available for hire
+          </span>
           <div className="hero__eyebrow animate-fade-up" style={{ animationDelay: '0.05s', opacity: 0 }}>
             <span className="hero__eyebrow-dot" />
             {personalInfo.currentRole}
@@ -30,30 +33,30 @@ const Hero = () => {
           </p>
 
           <h1 className="hero__headline animate-fade-up" style={{ animationDelay: '0.2s', opacity: 0 }}>
-            Mobile apps &amp; <em>grounded AI.</em>
+            Mobile Engineer <em>· Grounded AI Workflows.</em>
           </h1>
 
           <p className="hero__description animate-fade-up" style={{ animationDelay: '0.32s', opacity: 0 }}>
-            {personalInfo.summary}
+            {personalInfo.summary} I also build dependable mobile products for real-world teams.
           </p>
 
           <div className="hero__pill-row animate-fade-up" style={{ animationDelay: '0.42s', opacity: 0 }}>
-            <span className="hero__pill">Offline-first mobile</span>
-            <span className="hero__pill">GPS · NFC · real-time</span>
-            <span className="hero__pill">Grounded AI agents</span>
+            <span className="hero__pill">Repository wikis + guardrails</span>
+            <span className="hero__pill">MCP · GLiNER · agent routing</span>
+            <span className="hero__pill">Sandboxed QA · feedback loops</span>
           </div>
 
-          <div className="hero__actions animate-fade-up" style={{ animationDelay: '0.52s', opacity: 0 }}>
+          <div className="hero__actions animate-fade-up" style={{ animationDelay: '0.5s', opacity: 0 }}>
             <a href="#projects" className="hero__btn hero__btn--primary">
               See Case Studies
             </a>
             <a href={`mailto:${personalInfo.email}`} className="hero__btn hero__btn--secondary">
               Start a Conversation
             </a>
-            <a href={personalInfo.cvUrl} className="hero__btn hero__btn--secondary" download>
-              Download CV
-            </a>
           </div>
+          <a href={personalInfo.cvUrl} className="hero__cv-link animate-fade-up" style={{ animationDelay: '0.6s', opacity: 0 }} download>
+            Download CV (PDF)
+          </a>
 
           <div className="hero__stats animate-fade-up" style={{ animationDelay: '0.64s', opacity: 0 }}>
             {heroStats.map((stat) => (

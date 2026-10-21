@@ -37,6 +37,11 @@
   font-weight: 600;
 }
 
+[data-theme='dark'] .mobile-cta__primary {
+  color: #0c1316;
+  background: var(--accent);
+}
+
 .mobile-cta__secondary {
   display: inline-flex;
   min-width: 56px;
@@ -50,7 +55,7 @@
   font-weight: 600;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 768px) {
   .mobile-cta {
     display: flex;
     pointer-events: none;

@@ -35,10 +35,13 @@ describe('portfolio content', () => {
     expect(optima.highlights.join(' ')).toContain('Docker');
     expect(optima.highlights.join(' ').toLowerCase()).toContain('feedback');
     expect(optima.tags).toContain('Automated QA');
+    expect(optima.highlights.join(' ')).toContain('GLiNER');
+    expect(optima.highlights.join(' ')).toContain('guardrails');
+    expect(optima.highlights.join(' ')).toContain('Optima MCP server');
   });
 
   test('featured project galleries have matching screenshot metadata', () => {
-    const featuredProjects = projects.filter((project) => project.featured);
+    const featuredProjects = projects.filter((project) => project.featured && project.imageSet);
 
     expect(featuredProjects.length).toBeGreaterThan(0);
     featuredProjects.forEach((project) => {
@@ -46,6 +49,14 @@ describe('portfolio content', () => {
       expect(project.gallery.every((image) => image.label && image.caption)).toBe(true);
       expect(project.tags.length).toBeGreaterThan(0);
     });
+
+    const optima = projects.find((project) => project.name === 'Optima AI Factory');
+    expect(optima.featured).toBe(true);
+    expect(optima.featuredOrder).toBe(1);
+    expect(optima.workflow.length).toBeGreaterThan(0);
+    expect(optima.challenge).toBeTruthy();
+    expect(optima.role).toBeTruthy();
+    expect(optima.impact).toBeTruthy();
   });
 
   test('published Novus apps link to their iOS and Android listings', () => {

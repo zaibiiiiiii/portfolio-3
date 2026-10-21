@@ -59,22 +59,26 @@ describe('project gallery widget', () => {
   });
 
   test('highlights distinctive app capabilities and keeps deeper implementation notes expandable', () => {
-    expect(container.querySelectorAll('.app-project__feature').length).toBe(7);
+    expect(container.querySelectorAll('.app-project__feature').length).toBe(13);
     expect(container.textContent).toContain('Checkpoint verification without geofencing');
     expect(container.textContent).toContain('Indoor positioning and 3D routes');
     expect(container.textContent).toContain('Wearable safety integrations');
     expect(container.textContent).toContain('Site cameras without GPS');
-    expect(container.querySelectorAll('.app-project__details').length).toBe(3);
+    expect(container.querySelectorAll('.app-project__details').length).toBe(4);
     expect(container.querySelector('.app-project__details').open).toBe(false);
   });
 
-  test('shows Optima AI Factory as a case study with its delivery workflow details', () => {
+  test('features Optima AI Factory with a grounded, reviewable delivery workflow', () => {
     expect(container.textContent).toContain('Optima AI Factory');
-    expect(container.textContent).toContain('Additional product work');
-    expect(container.textContent).not.toContain('Additional mobile work');
+    expect(container.querySelectorAll('.app-project').length).toBe(4);
+    expect(container.querySelectorAll('.app-project__name')[0].textContent).toBe('Optima AI Factory');
+    expect(container.querySelector('.app-project__workflow')).toBeTruthy();
+    expect(container.textContent).toContain('Repository-grounded agents');
+    expect(container.textContent).toContain('GLiNER helps match a task');
+    expect(container.textContent).toContain('Optima and subagents over MCP');
+    expect(container.textContent).toContain('Verify, review, and learn');
     expect(container.textContent).toContain('MCP-connected semantic retrieval');
     expect(container.textContent.toLowerCase()).toContain('isolated docker sandboxes');
-    expect(container.querySelectorAll('.other-project__highlights li').length).toBeGreaterThanOrEqual(5);
   });
 
   test('changes the featured screenshot when a thumbnail is selected', () => {

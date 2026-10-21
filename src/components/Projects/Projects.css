@@ -77,6 +77,10 @@
   transition: var(--transition);
 }
 
+[data-theme='dark'] .app-project__logo-shell {
+  background: #10191c;
+}
+
 .app-project__logo-shell:hover {
   transform: scale(1.05);
   border-color: #c9d2d4;
@@ -312,6 +316,11 @@
   background: var(--ink);
 }
 
+[data-theme='dark'] .app-project__cta--primary {
+  color: #0c1316;
+  background: var(--accent);
+}
+
 .app-project__cta--primary:hover,
 .app-project__cta--primary:focus-visible {
   background: var(--accent);
@@ -345,6 +354,74 @@
   gap: 16px;
   min-width: 0;
   perspective: 1200px;
+}
+
+.app-project__workflow {
+  display: grid;
+  width: min(100%, 520px);
+  min-height: 480px;
+  align-content: center;
+  gap: 26px;
+  padding: clamp(28px, 4vw, 48px);
+  overflow: hidden;
+  border: 1px solid #263b40;
+  border-radius: 26px;
+  color: #f4f8f7;
+  background:
+    radial-gradient(ellipse at 12% 0%, rgba(23, 160, 142, 0.22), transparent 46%),
+    linear-gradient(145deg, #14262a, #10191c);
+  box-shadow: 0 28px 70px rgba(16, 22, 25, 0.16);
+}
+
+.app-project__workflow-label {
+  color: #76cbbb;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.app-project__workflow-list {
+  display: grid;
+  list-style: none;
+}
+
+.app-project__workflow-step {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 14px;
+  padding: 17px 0;
+}
+
+.app-project__workflow-step + .app-project__workflow-step {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.app-project__workflow-number {
+  display: inline-grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border: 1px solid rgba(118, 203, 187, 0.4);
+  border-radius: 9px;
+  color: #76cbbb;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.app-project__workflow-step h4 {
+  margin: 0 0 5px;
+  color: #f4f8f7;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.app-project__workflow-step p {
+  color: #b5c5c7;
+  font-size: 13px;
+  line-height: 1.65;
 }
 
 .app-project__device-stage {
@@ -500,6 +577,10 @@
   font-weight: 500;
 }
 
+[data-theme='dark'] .app-project__status {
+  background: #10191c;
+}
+
 .app-project__device-caption-dot {
   width: 7px;
   height: 7px;
@@ -591,6 +672,10 @@
   gap: 5px;
   scroll-snap-align: start;
   transition: var(--transition);
+}
+
+[data-theme='dark'] .app-project__thumb {
+  background: #10191c;
 }
 
 .app-project__thumb:hover,

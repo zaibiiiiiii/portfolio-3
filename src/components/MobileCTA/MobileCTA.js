@@ -9,11 +9,14 @@ const MobileCTA = () => {
 
   useEffect(() => {
     let contactVisible = false;
+    let projectsVisible = false;
     let ticking = false;
 
     const update = () => {
       ticking = false;
-      setVisible(window.scrollY > window.innerHeight * 0.65 && !contactVisible);
+      setVisible(
+        window.scrollY > window.innerHeight * 0.65 && !contactVisible && !projectsVisible
+      );
     };
     const onScroll = () => {
       if (!ticking) {
@@ -23,14 +26,22 @@ const MobileCTA = () => {
     };
 
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        contactVisible = entry.isIntersecting;
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.target.id === 'contact') {
+            contactVisible = entry.isIntersecting;
+          } else if (entry.target.id === 'projects') {
+            projectsVisible = entry.isIntersecting;
+          }
+        });
         onScroll();
       },
       { threshold: 0.02 }
     );
     const contact = document.getElementById('contact');
+    const projects = document.getElementById('projects');
     if (contact) observer.observe(contact);
+    if (projects) observer.observe(projects);
 
     window.addEventListener('scroll', onScroll, { passive: true });
     update();
@@ -53,6 +64,7 @@ const MobileCTA = () => {
         href={personalInfo.cvUrl}
         className="mobile-cta__secondary"
         download
+        aria-label="Download CV as a PDF"
         tabIndex={visible ? 0 : -1}
       >
         CV

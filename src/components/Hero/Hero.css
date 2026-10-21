@@ -31,6 +31,34 @@
   padding-bottom: 12px;
 }
 
+.hero__availability-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 28px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid var(--accent);
+  background: rgba(14, 112, 134, 0.08);
+  color: var(--accent-ink);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.hero__availability-badge::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #16a34a;
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.2);
+  animation: subtlePulse 2.5s ease-in-out infinite;
+}
+
 .hero__eyebrow {
   display: inline-flex;
   align-items: center;
@@ -47,6 +75,10 @@
   font-weight: 500;
   letter-spacing: 0.04em;
   margin-bottom: 30px;
+}
+
+[data-theme='dark'] .hero__eyebrow {
+  background: #10191c;
 }
 
 .hero__eyebrow-dot {
@@ -70,12 +102,12 @@
 
 .hero__headline {
   font-family: var(--font-display);
-  font-size: clamp(52px, 7.6vw, 106px);
-  line-height: 0.97;
+  font-size: clamp(40px, 6vw, 64px);
+  line-height: 1.1;
   font-weight: 700;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.03em;
   color: var(--ink);
-  max-width: 11ch;
+  max-width: 40ch;
   margin-bottom: 26px;
 }
 
@@ -146,6 +178,12 @@
   box-shadow: 0 14px 28px rgba(16, 22, 25, 0.18);
 }
 
+[data-theme='dark'] .hero__btn--primary {
+  color: #0c1316;
+  background: var(--accent);
+  box-shadow: 0 14px 28px rgba(14, 112, 134, 0.3);
+}
+
 .hero__btn--primary:hover,
 .hero__btn--primary:focus-visible {
   background: var(--accent);
@@ -163,6 +201,24 @@
 .hero__btn--secondary:focus-visible {
   border-color: var(--ink);
   transform: translateY(-2px);
+}
+
+.hero__cv-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 12px;
+  transition: color var(--transition);
+}
+
+.hero__cv-link:hover {
+  color: var(--accent);
 }
 
 .hero__stats {
@@ -431,7 +487,7 @@
 
   .hero__headline {
     margin-bottom: 14px;
-    font-size: clamp(40px, 11.5vw, 54px);
+    font-size: clamp(36px, 10vw, 50px);
   }
 
   .hero__description {

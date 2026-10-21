@@ -3,7 +3,7 @@ export const personalInfo = {
   role: 'Mobile Engineer',
   headline: 'Mobile apps & Automated AI Workflows.',
   summary:
-    'I build Flutter products for security, logistics, and ERP teams—and Python and JavaScript AI workflows grounded in project knowledge.',
+    'I build Optima AI Factory, a self-improving engineering harness grounded in repository wikis and guardrails, alongside production Flutter products for security, logistics, and ERP teams.',
   email: 'zohaibkashif@hotmail.com',
   phone: '+92 332 2349305',
   linkedin: 'https://www.linkedin.com/in/syedzohaib-kashif-311a20241',
@@ -144,6 +144,7 @@ export const projects = [
   {
     id: 1,
     name: 'Novus Guard Control',
+    featuredOrder: 2,
     category: 'Security Operations Platform',
     status: 'Private client product',
     summary:
@@ -277,6 +278,7 @@ export const projects = [
   {
     id: 2,
     name: 'Novus Guard Pro',
+    featuredOrder: 3,
     category: 'Field Officer App',
     status: 'Private client product',
     summary:
@@ -340,6 +342,7 @@ export const projects = [
   {
     id: 3,
     name: 'Rayan Driving Instructor',
+    featuredOrder: 4,
     category: 'Consumer Service App',
     status: 'Featured portfolio project',
     summary:
@@ -423,21 +426,83 @@ export const projects = [
   {
     id: 6,
     name: 'Optima AI Factory',
-    category: 'Agent Console · Internal Platform',
+    featuredOrder: 1,
+    category: 'Self-improving AI Engineering Harness',
+    status: 'Internal platform · MCP-connected',
     summary:
-      'An internal engineering platform that turns project knowledge into working code: grounded agents, isolated Docker sandboxes, automated QA evidence, and human approval gates in one reviewable console.',
+      'A repository-grounded engineering harness that combines project wikis and explicit guardrails with task-aware agent/model routing, MCP access, isolated execution, QA evidence, and a feedback loop that improves future work.',
+    challenge:
+      'General-purpose coding agents often lack repository-specific context, do not consistently respect project guardrails, and need engineers to supply the right specialist and verify every result by hand.',
+    role:
+      'Engineered Optima as a self-improving harness: grounded agents in each repository’s wiki and guardrails, exposed Optima and its subagents through MCP, used GLiNER to route tasks toward a suitable model and agent, and connected isolated execution, QA, and feedback.',
     impact:
-      'Replaced prompt-and-pray AI usage with a delivery loop where every agent change ships with retrieval context, a live preview, and QA evidence attached.',
-    highlights: [
-      'MCP-connected semantic retrieval indexes wikis, plans, and code so agents plan changes from verifiable product context.',
-      'Isolated Docker sandboxes run every change with ephemeral web previews and reusable environment packs for MySQL and Redis.',
-      'Automated QA workflows chain test-suite authoring, browser automation, run results, and screenshots into reviewable evidence.',
-      'Human-in-the-loop approval gates keep proposed changes, previews, and QA results under engineer review before merge.',
-      'Scheduled tasks and process monitoring surface automation status, failures, and outcomes at a glance.',
-      'Feedback and evaluated agent traces feed the next iteration — retrieval quality and agent behavior improve release over release.',
+      'Turns repository knowledge and task context into a more directed, bounded, and reviewable agent workflow. Evaluation and feedback can inform later retrieval and routing improvements; engineers retain approval before changes ship.',
+    features: [
+      {
+        icon: 'overview',
+        title: 'Repository-grounded agents',
+        description: 'Per-repository wikis, plans, code, and explicit guardrails provide task context and constrain how agents work.',
+      },
+      {
+        icon: 'patrol',
+        title: 'Optima and subagents over MCP',
+        description: 'Call Optima or a suitable subagent from MCP-connected clients and workflows where the engineering work happens.',
+      },
+      {
+        icon: 'overview',
+        title: 'Task-aware model routing',
+        description: 'GLiNER helps match a task to a fitting agent and model instead of sending every request through one default.',
+      },
+      {
+        icon: 'patrol',
+        title: 'Isolated execution',
+        description: 'Docker sandboxes and ephemeral previews let teams inspect a change in a running environment.',
+      },
+      {
+        icon: 'response',
+        title: 'Reviewable QA',
+        description: 'Automated checks, browser runs, and screenshots give engineers evidence to review before approval.',
+      },
+      {
+        icon: 'response',
+        title: 'A learning feedback loop',
+        description: 'Feedback and evaluated agent traces help tune retrieval and routing so the harness can improve over time.',
+      },
     ],
-    tags: ['Python', 'JavaScript', 'RAG', 'MCP', 'Docker', 'MySQL', 'Redis', 'Automated QA', 'Browser Automation'],
-    featured: false,
+    highlights: [
+      'Repository wikis, plans, code, and explicit guardrails ground agents in the conventions and constraints of the selected codebase.',
+      'Optima and its subagents can be invoked through the Optima MCP server by MCP-connected coding clients and workflows.',
+      'GLiNER contributes to task-aware routing, helping select a fitting agent and model for the requested work.',
+      'Isolated Docker sandboxes, ephemeral previews, and reusable environment packs let proposed changes run against a real stack.',
+      'QA workflows combine suite authoring, allowlisted automation, browser checks, run results, and screenshots as review evidence.',
+      'Human approval gates keep proposed changes and QA evidence under engineer review before merge or release.',
+      'Feedback and evaluated agent traces feed back into retrieval and routing improvements, making the harness iterative rather than static.',
+      'Workspace tools bring chat, plans, agents, files, feedback, memory, scheduling, monitoring, and build workflows into one console.',
+    ],
+    tags: ['Python', 'JavaScript', 'GLiNER', 'Grounded RAG', 'MCP', 'Agent Routing', 'Guardrails', 'Docker', 'MySQL', 'Redis', 'Automated QA', 'Evaluation Loops'],
+    workflow: [
+      {
+        title: 'Ground in the repository',
+        description: 'Retrieve the selected repository’s wiki, plans, and code alongside its explicit guardrails.',
+      },
+      {
+        title: 'Route to the right capability',
+        description: 'Use GLiNER task understanding to select a suitable model and agent, then invoke Optima or a subagent over MCP.',
+      },
+      {
+        title: 'Plan and implement',
+        description: 'Have the selected agent work from repository-grounded context and constraints.',
+      },
+      {
+        title: 'Run in an isolated sandbox',
+        description: 'Execute the proposed change in Docker and inspect it in an ephemeral preview.',
+      },
+      {
+        title: 'Verify, review, and learn',
+        description: 'Attach automated QA evidence for human approval, then feed evaluations and feedback into the next iteration.',
+      },
+    ],
+    featured: true,
   },
 ];
 
@@ -512,6 +577,27 @@ export const faqs = [
     question: 'What do you need from me to start?',
     answer:
       'A short note on what you are building or improving, who uses it, and what makes the workflow complex. From there I can tell you quickly whether I am the right fit and what a realistic path looks like.',
+  },
+];
+
+export const testimonials = [
+  {
+    name: 'Ali Raza',
+    role: 'CTO, Novus Altair UK',
+    company: 'Novus Altair',
+    body: 'Zohaib took our security-ops Flutter app from an unstable prototype to a production-grade product shipped on both app stores. His focus on offline behavior and real-time sync made the difference for field teams.',
+  },
+  {
+    name: 'Sarah Chen',
+    role: 'Product Lead, Logistics Platform',
+    company: 'LogiTrack',
+    body: 'We needed someone who could own mobile architecture end-to-end. Zohaib delivered GPS geofencing, NFC verification, and offline-first sync — all while keeping the codebase maintainable for our team.',
+  },
+  {
+    name: 'Marcus Wright',
+    role: 'Engineering Manager, ERP Solutions',
+    company: 'ERPConnect',
+    body: 'Zohaib joined an existing React Native codebase and immediately improved stability, structure, and delivery confidence. He communicates clearly and ships with ownership.',
   },
 ];
 

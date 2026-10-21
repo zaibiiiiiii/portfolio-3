@@ -75,7 +75,7 @@
   gap: 8px;
 }
 
-@media (max-width: 880px) {
+@media (max-width: 768px) {
   .skills__groups {
     grid-template-columns: 1fr;
   }

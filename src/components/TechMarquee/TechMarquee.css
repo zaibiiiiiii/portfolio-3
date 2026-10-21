@@ -19,6 +19,10 @@
   animation: tech-marquee 44s linear infinite;
 }
 
+.tech-marquee__row--paused {
+  animation-play-state: paused;
+}
+
 @keyframes tech-marquee {
   to {
     transform: translateX(-100%);

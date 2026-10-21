@@ -266,6 +266,7 @@ const TechBadge = ({ label, variant = 'tag' }) => {
   return (
     <span
       className={`tech-badge tech-badge--${variant}`}
+      aria-label={`${label} skill`}
       style={{
         '--tech-ink': ink,
         '--tech-surface': brand ? hexToRgba(glowHex, 0.14) : iconConfig?.surface || 'rgba(209, 217, 232, 0.12)',

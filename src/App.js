@@ -1,12 +1,13 @@
+import { ThemeProvider } from './components/Theme/ThemeContext';
 import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
-import TechMarquee from './components/TechMarquee/TechMarquee';
 import About from './components/About/About';
-import Services from './components/Services/Services';
-import Skills from './components/Skills/Skills';
 import Experience from './components/Experience/Experience';
-import ParallaxBand from './components/ParallaxBand/ParallaxBand';
+import Skills from './components/Skills/Skills';
 import Projects from './components/Projects/Projects';
+import Services from './components/Services/Services';
+import Testimonials from './components/Testimonials/Testimonials';
+import ParallaxBand from './components/ParallaxBand/ParallaxBand';
 import Faq from './components/Faq/Faq';
 import Contact from './components/Contact/Contact';
 import MobileCTA from './components/MobileCTA/MobileCTA';
@@ -16,19 +17,21 @@ const App = () => {
   return (
     <>
       <ScrollProgress />
-      <Navbar />
-      <main id="main-content" tabIndex={-1}>
-        <Hero />
-        <TechMarquee />
-        <About />
-        <Services />
-        <Skills />
-        <Experience />
-        <ParallaxBand />
-        <Projects />
-        <Faq />
-        <Contact />
-      </main>
+      <ThemeProvider>
+        <Navbar />
+        <main id="main-content" tabIndex={-1}>
+          <Hero />
+          <About />
+          <Experience />
+          <Skills />
+          <Projects />
+          <Services />
+          <Testimonials />
+          <ParallaxBand />
+          <Faq />
+          <Contact />
+        </main>
+      </ThemeProvider>
       <MobileCTA />
     </>
   );

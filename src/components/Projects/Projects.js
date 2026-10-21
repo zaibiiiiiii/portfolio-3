@@ -284,13 +284,15 @@ const AppProject = ({ project, index }) => {
           </div>
         )}
 
-        <p className="app-project__platform-copy">
-          {project.platformNote || `Available for ${project.platforms.join(' and ')}.`}
-        </p>
+        {(project.platformNote || project.platforms?.length > 0) && (
+          <p className="app-project__platform-copy">
+            {project.platformNote || `Available for ${project.platforms.join(' and ')}.`}
+          </p>
+        )}
       </div>
 
       <div className="app-project__visuals" ref={deviceRef}>
-        {images.length > 0 && (
+        {images.length > 0 ? (
           <>
             <div className="app-project__device-stage">
               <motion.div
@@ -362,7 +364,24 @@ const AppProject = ({ project, index }) => {
               </>
             )}
           </>
-        )}
+        ) : project.workflow?.length > 0 ? (
+          <div className="app-project__workflow">
+            <span className="app-project__workflow-label">From context to reviewed change</span>
+            <ol className="app-project__workflow-list">
+              {project.workflow.map((step, stepIndex) => (
+                <li className="app-project__workflow-step" key={step.title}>
+                  <span className="app-project__workflow-number" aria-hidden="true">
+                    {String(stepIndex + 1).padStart(2, '0')}
+                  </span>
+                  <div>
+                    <h4>{step.title}</h4>
+                    <p>{step.description}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+        ) : null}
       </div>
     </motion.article>
   );
@@ -391,7 +410,9 @@ const OtherProject = ({ project }) => (
 
 const Projects = () => {
   const [ref, isVisible] = useIntersectionObserver();
-  const featuredProjects = projects.filter((project) => project.featured);
+  const featuredProjects = projects
+    .filter((project) => project.featured)
+    .sort((a, b) => (a.featuredOrder || a.id) - (b.featuredOrder || b.id));
   const otherProjects = projects.filter((project) => !project.featured);
 
   return (
@@ -399,14 +420,15 @@ const Projects = () => {
       <div className={`projects__inner${isVisible ? ' projects__inner--visible' : ''}`}>
         <div className="projects__header">
           <p className="section-label">Projects</p>
-          <h2 className="section-title">Mobile products. Grounded AI. <span className="projects__title-highlight">Built for real work.</span></h2>
+          <h2 className="section-title">A self-improving AI engineering harness. <span className="projects__title-highlight">Plus products built for real work.</span></h2>
           <p className="section-subtitle">
-            These are the projects that best show how I think: translating difficult workflows into
-            mobile tools that stay dependable for the people using them.
+            Optima grounds agents in repository knowledge and guardrails, routes work to a fitting
+            model and agent, and closes the loop with isolated execution, QA, and feedback. My mobile
+            products bring the same focus on dependable delivery to real-world teams.
           </p>
           <p className="projects__note">
-            Much of my recent work is private client software, so I share the product thinking and system
-            design rather than internal metrics or store links.
+            Some client work is private, so these case studies focus on the product decisions and
+            engineering behind the work without sharing proprietary data.
           </p>
         </div>
 
@@ -437,6 +459,7 @@ const Projects = () => {
                 target="_blank"
                 rel="noreferrer"
                 className="web-project"
+                aria-label={`Visit ${project.name} (opens in new tab)`}
               >
                 <div className="web-project__content">
                   <TechBadge label={project.category} variant="tag" />

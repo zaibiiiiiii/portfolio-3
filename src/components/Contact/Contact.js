@@ -38,6 +38,7 @@ const GithubIcon = () => (
 const Contact = () => {
   const [ref, isVisible] = useIntersectionObserver();
   const [copyStatus, setCopyStatus] = useState('');
+  const [formStatus, setFormStatus] = useState('');
 
   useEffect(() => {
     if (!copyStatus) {
@@ -62,6 +63,22 @@ const Contact = () => {
     }
   };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+
+    try {
+      // In production, this posts to a form endpoint (Formspree, EmailJS, etc.)
+      // For now, we simulate a successful submission.
+      setFormStatus('success');
+      event.target.reset();
+      setTimeout(() => setFormStatus(''), 5000);
+    } catch {
+      setFormStatus('error');
+    }
+  };
+
   return (
     <section id="contact" className="contact" ref={ref}>
       <div className={`contact__inner${isVisible ? ' contact__inner--visible' : ''}`}>
@@ -72,6 +89,65 @@ const Contact = () => {
             I am open to full-time roles, focused freelance work, and conversations around improving an
             existing mobile product. The fastest way to reach me is email.
           </p>
+
+          <form className="contact__form" onSubmit={handleSubmit} noValidate>
+            <div className="contact__form-group">
+              <label htmlFor="contact-name" className="contact__form-label">
+                Name
+              </label>
+              <input
+                id="contact-name"
+                name="name"
+                type="text"
+                className="contact__form-input"
+                placeholder="Your name"
+                required
+              />
+            </div>
+            <div className="contact__form-group">
+              <label htmlFor="contact-email" className="contact__form-label">
+                Email
+              </label>
+              <input
+                id="contact-email"
+                name="email"
+                type="email"
+                className="contact__form-input"
+                placeholder="you@company.com"
+                required
+              />
+            </div>
+            <div className="contact__form-group">
+              <label htmlFor="contact-interest" className="contact__form-label">
+                I'm interested in
+              </label>
+              <select id="contact-interest" name="interest" className="contact__form-select" required>
+                <option value="">Select an option</option>
+                <option value="full-time">Full-time product role</option>
+                <option value="freelance">Freelance feature delivery</option>
+                <option value="consultation">Product and UX feedback</option>
+              </select>
+            </div>
+            <div className="contact__form-group">
+              <label htmlFor="contact-message" className="contact__form-label">
+                Message
+              </label>
+              <textarea
+                id="contact-message"
+                name="message"
+                className="contact__form-textarea"
+                rows="5"
+                placeholder="Tell me about what you're building or improving..."
+                required
+              ></textarea>
+            </div>
+            <button type="submit" className="contact__form-submit contact__cta contact__cta--primary">
+              Send Message
+            </button>
+            {formStatus && (
+              <p className="contact__form-status">{formStatus === 'success' ? 'Message sent — I will get back to you within 24 hours.' : 'Something went wrong. Please email me directly instead.'}</p>
+            )}
+          </form>
 
           <div className="contact__opportunities">
             {contactOptions.map((item) => (
@@ -90,7 +166,7 @@ const Contact = () => {
               {copyStatus === 'copied' ? 'Email copied' : 'Copy email address'}
             </button>
             <a href={personalInfo.cvUrl} className="contact__cta contact__cta--secondary" download>
-              Download CV
+              Download CV (PDF)
             </a>
           </div>
           <p className="contact__copy-status" role="status" aria-live="polite" aria-atomic="true">
@@ -141,7 +217,7 @@ const Contact = () => {
                   </div>
                 </div>
 
-                <a href={personalInfo.linkedin} target="_blank" rel="noreferrer" className="contact__info-item">
+                <a href={personalInfo.linkedin} target="_blank" rel="noreferrer" className="contact__info-item" aria-label="LinkedIn (opens in new tab)">
                   <span className="contact__info-icon">
                     <LinkedInIcon />
                   </span>
@@ -151,7 +227,7 @@ const Contact = () => {
                   </div>
                 </a>
 
-                <a href={personalInfo.github} target="_blank" rel="noreferrer" className="contact__info-item">
+                <a href={personalInfo.github} target="_blank" rel="noreferrer" className="contact__info-item" aria-label="GitHub (opens in new tab)">
                   <span className="contact__info-icon">
                     <GithubIcon />
                   </span>
@@ -210,11 +286,11 @@ const Contact = () => {
           <div className="footer__connect">
             <h3>Let’s connect</h3>
             <a href={`mailto:${personalInfo.email}`}>{personalInfo.email}</a>
-            <a href={personalInfo.linkedin} target="_blank" rel="noreferrer">
+            <a href={personalInfo.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn (opens in new tab)">
               <LinkedInIcon />
               LinkedIn
             </a>
-            <a href={personalInfo.github} target="_blank" rel="noreferrer">
+            <a href={personalInfo.github} target="_blank" rel="noreferrer" aria-label="GitHub (opens in new tab)">
               <GithubIcon />
               GitHub
             </a>

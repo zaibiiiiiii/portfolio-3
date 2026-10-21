@@ -1,0 +1,55 @@
+.theme-toggle {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid var(--hairline);
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color var(--transition), background var(--transition), color var(--transition);
+  color: var(--ink);
+}
+
+[data-theme='dark'] .theme-toggle {
+  background: #10191c;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+}
+
+.theme-toggle--dark {
+  background: #10191c;
+  border-color: #1e2b2f;
+  color: #e8f0ef;
+}
+
+.theme-toggle--dark:hover {
+  border-color: var(--accent);
+}
+
+.theme-toggle__icon {
+  display: none;
+  width: 20px;
+  height: 20px;
+}
+
+.theme-toggle--light .theme-toggle__icon--sun,
+.theme-toggle--dark .theme-toggle__icon--moon {
+  display: block;
+}
+
+.theme-toggle__label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}

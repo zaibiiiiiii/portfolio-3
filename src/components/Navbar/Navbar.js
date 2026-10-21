@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { personalInfo } from '../../utils/data';
+import ThemeToggle from '../Theme/ThemeToggle';
 import './Navbar.css';
 
 const navLinks = [
@@ -14,7 +15,7 @@ const navLinks = [
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isMobileNav, setIsMobileNav] = useState(window.innerWidth <= 860);
+  const [isMobileNav, setIsMobileNav] = useState(window.innerWidth <= 768);
   const [active, setActive] = useState('');
   const menuRef = useRef(null);
   const triggerRef = useRef(null);
@@ -75,7 +76,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      const mobileNav = window.innerWidth <= 860;
+      const mobileNav = window.innerWidth <= 768;
       setIsMobileNav(mobileNav);
       if (!mobileNav) {
         setMenuOpen(false);
@@ -103,7 +104,7 @@ const Navbar = () => {
           .find(({ href }) => visibleSections.has(href.slice(1)));
         setActive(currentSection?.href.slice(1) || '');
       },
-      { threshold: 0, rootMargin: '-18% 0px -62% 0px' }
+      { threshold: 0, rootMargin: '-10% 0px -70% 0px' }
     );
 
     navLinks.forEach(({ href }) => {
@@ -133,8 +134,8 @@ const Navbar = () => {
             ref={menuRef}
             className={`navbar__menu-shell${menuOpen ? ' navbar__menu-shell--open' : ''}`}
             id="site-navigation"
-            role="group"
-            aria-label="Mobile navigation"
+            role="navigation"
+            aria-label="Main navigation"
             aria-hidden={isMobileNav && !menuOpen}
           >
             <div className="navbar__menu-heading">
@@ -199,6 +200,8 @@ const Navbar = () => {
             <span />
             <span />
           </button>
+
+          <ThemeToggle className="navbar__theme-toggle" />
         </div>
       </nav>
 

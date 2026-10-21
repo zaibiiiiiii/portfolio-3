@@ -11,7 +11,7 @@
   --ink: #101619;
   --ink-soft: #2a3539;
   --text-secondary: #45535a;
-  --text-muted: #76838a;
+  --text-muted: #66747b;
   --hairline: #e5eaeb;
   --accent: #0e7086;
   --accent-ink: #0a5563;
@@ -19,6 +19,19 @@
   --font-body: 'DM Sans', sans-serif;
   --font-mono: ui-monospace, 'SF Mono', 'Cascadia Code', 'Menlo', monospace;
   --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #0c1316;
+  --bg-soft: #10191c;
+  --ink: #f1f7f6;
+  --ink-soft: #cfe4e0;
+  --text-secondary: #a8bdb9;
+  --text-muted: #66c9ae;
+  --hairline: #1e2b2f;
+  --accent: #66c9ae;
+  --accent-ink: #8fe3c7;
 }
 
 html {
