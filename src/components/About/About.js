@@ -24,10 +24,9 @@ const About = () => {
             move faster under pressure.
           </p>
           <p className="about__text">
-            At Novus Altair, I also contribute to Optima AI Factory: grounding engineering agents in
-            product knowledge — AI assistants that work from a project&apos;s own docs and code
-            instead of guessing — and connecting their work to isolated sandboxes, automated QA,
-            and feedback-driven improvement.
+            At Novus Altair, I also engineer Optima AI Factory — an agent console where AI
+            assistants work from a project&apos;s own docs, plans, and code, ship changes into
+            isolated sandboxes, and earn a merge through automated QA and human review.
           </p>
           <p className="about__text">
             I work best with product teams that value calm problem solving, strong ownership, and

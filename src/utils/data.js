@@ -74,8 +74,8 @@ export const skillGroups = [
   },
   {
     title: 'AI Systems and Automation',
-    description: 'Grounding engineering agents and connecting them to reviewable software workflows.',
-    skills: ['Python', 'JavaScript', 'Grounded RAG', 'Model Context Protocol (MCP)', 'Agent Workflows', 'Docker Sandboxes', 'Automated QA'],
+    description: 'The delivery loop I build for agent-driven work: retrieval for context, sandboxes for execution, automated QA for evidence, evals to keep improving.',
+    skills: ['Python', 'JavaScript', 'Grounded RAG', 'Model Context Protocol (MCP)', 'Agent Workflows', 'Docker Sandboxes', 'Automated QA', 'Human-in-the-Loop Reviews', 'Evaluation Loops'],
   },
   {
     title: 'Delivery Support',
@@ -90,12 +90,12 @@ export const experiences = [
     role: 'Mobile App Developer',
     period: 'May 2025 - Present',
     type: 'Full-time',
-    summary: 'Building cross-platform products and contributing to Optima AI Factory, an AI-assisted engineering workspace for grounded agents and improving software workflows.',
+    summary: 'Building cross-platform products and engineering Optima AI Factory, an agent console where AI assistants grounded in real project knowledge deliver reviewed, QA-checked code changes.',
     achievements: [
-      'Implemented app flows that connect mobile users with ERP-backed business processes.',
-      'Built Python- and JavaScript-based agent workflows grounded in project wikis, plans, and code through MCP-connected retrieval.',
-      'Connected isolated development sandboxes, live previews, automated QA runs, and feedback into reviewable software-delivery loops.',
-      'Improved maintainability and responsiveness for operations-heavy mobile and AI-assisted workflows.',
+      'Engineered retrieval-grounded agent workflows: MCP-connected semantic search across project wikis, plans, and code gives agents verifiable context instead of guesses.',
+      'Built isolated Docker sandboxes with ephemeral web previews and reusable environment packs, so every agent change runs against a real stack.',
+      'Wired automated QA runs — browser automation, screenshots, coverage — into human-in-the-loop approval points before anything ships.',
+      'Closed the loop with feedback and evaluated agent traces, tuning retrieval quality and agent behavior release over release.',
     ],
     tags: ['Flutter', 'Python', 'JavaScript', 'RAG', 'MCP', 'Docker', 'Automated QA'],
   },
@@ -423,19 +423,20 @@ export const projects = [
   {
     id: 6,
     name: 'Optima AI Factory',
-    category: 'AI-assisted software delivery',
+    category: 'Agent Console · Internal Platform',
     summary:
-      'An engineering workspace for grounded agents, isolated development, and automated delivery workflows built around real product context.',
+      'An internal engineering platform that turns project knowledge into working code: grounded agents, isolated Docker sandboxes, automated QA evidence, and human approval gates in one reviewable console.',
     impact:
-      'Connects project knowledge to agent work, then brings sandbox previews, QA evidence, and feedback into a more inspectable build-and-improve loop.',
+      'Replaced prompt-and-pray AI usage with a delivery loop where every agent change ships with retrieval context, a live preview, and QA evidence attached.',
     highlights: [
-      'Grounded agent workflows use MCP-connected semantic retrieval across product wikis, plans, and code.',
-      'Isolated Docker sandboxes support web previews, reusable environment packs, MySQL, and Redis.',
-      'QA workflows connect project coverage, test-suite authoring, browser automation, run results, and screenshots.',
-      'Scheduled tasks and process monitoring make automation status, approval points, and outcomes easier to review.',
-      'Feedback and evaluated agent traces inform ongoing improvements to retrieval and agent behavior.',
+      'MCP-connected semantic retrieval indexes wikis, plans, and code so agents plan changes from verifiable product context.',
+      'Isolated Docker sandboxes run every change with ephemeral web previews and reusable environment packs for MySQL and Redis.',
+      'Automated QA workflows chain test-suite authoring, browser automation, run results, and screenshots into reviewable evidence.',
+      'Human-in-the-loop approval gates keep proposed changes, previews, and QA results under engineer review before merge.',
+      'Scheduled tasks and process monitoring surface automation status, failures, and outcomes at a glance.',
+      'Feedback and evaluated agent traces feed the next iteration — retrieval quality and agent behavior improve release over release.',
     ],
-    tags: ['Python', 'JavaScript', 'RAG', 'MCP', 'Docker', 'MySQL', 'Redis', 'Automated QA'],
+    tags: ['Python', 'JavaScript', 'RAG', 'MCP', 'Docker', 'MySQL', 'Redis', 'Automated QA', 'Browser Automation'],
     featured: false,
   },
 ];

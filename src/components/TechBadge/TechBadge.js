@@ -31,6 +31,8 @@ const aliasMap = {
   'manual sqa': 'qa',
   'qa collaboration': 'qa',
   crm: 'crm',
+  'human-in-the-loop reviews': 'team',
+  'evaluation loops': 'sync',
   dashboard: 'dashboard',
   logistics: 'logistics',
   'supply chain': 'logistics',
