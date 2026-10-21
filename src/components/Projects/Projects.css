@@ -567,6 +567,8 @@
   scroll-snap-type: x mandatory;
   scrollbar-color: #c9d2d4 transparent;
   scrollbar-width: thin;
+  mask-image: linear-gradient(90deg, transparent, #000 14px, #000 calc(100% - 14px), transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 14px, #000 calc(100% - 14px), transparent);
 }
 
 .app-project__thumbs::-webkit-scrollbar {
@@ -845,6 +847,11 @@
 @media (max-width: 760px) {
   .app-project {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Lead with the device on phones: the screens are the hook */
+  .app-project__visuals {
+    order: -1;
   }
 
   .app-project__device-stage {

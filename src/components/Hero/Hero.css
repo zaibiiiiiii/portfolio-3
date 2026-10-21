@@ -421,90 +421,99 @@
 
 @media (max-width: 640px) {
   .hero {
-    padding: 112px 20px 56px;
+    padding: 108px 20px 48px;
   }
 
   .hero__eyebrow {
-    margin-bottom: 22px;
+    margin-bottom: 18px;
     font-size: 11px;
   }
 
   .hero__headline {
-    margin-bottom: 18px;
-    font-size: clamp(44px, 11.5vw, 58px);
+    margin-bottom: 14px;
+    font-size: clamp(40px, 11.5vw, 54px);
   }
 
   .hero__description {
-    margin-bottom: 24px;
-    font-size: 15.5px;
-    line-height: 1.65;
+    margin-bottom: 18px;
+    font-size: 15px;
+    line-height: 1.6;
   }
 
   .hero__intro {
-    margin-bottom: 12px;
-    font-size: 11.5px;
+    margin-bottom: 10px;
+    font-size: 11px;
   }
 
   .hero__pill-row {
-    gap: 6px 16px;
-    margin-bottom: 26px;
+    gap: 5px 14px;
+    margin-bottom: 20px;
   }
 
   .hero__pill {
-    font-size: 11.5px;
+    font-size: 11px;
+    min-height: 20px;
   }
 
   .hero__actions {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 8px;
-    margin-bottom: 36px;
+    margin-bottom: 24px;
+  }
+
+  /* primary CTA owns a full row; the two secondary actions share one */
+  .hero__actions .hero__btn--primary {
+    grid-column: 1 / -1;
   }
 
   .hero__btn {
-    min-height: 48px;
+    min-height: 46px;
     width: 100%;
+    padding: 0 14px;
+    font-size: 13.5px;
   }
 
   .hero__stats {
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .hero__stat {
-    padding: 14px 0 0;
+    padding: 12px 8px 0 0;
   }
 
   .hero__stat + .hero__stat {
-    padding-left: 0;
-    border-left: none;
-    border-top: 1px solid var(--hairline);
-    margin-top: 14px;
-    padding-top: 14px;
+    padding-left: 10px;
+    border-left: 1px solid var(--hairline);
   }
 
   .hero__stat-value {
-    font-size: 20px;
+    font-size: 15px;
     overflow-wrap: anywhere;
   }
 
   .hero__stat-label {
-    font-size: 12px;
-    line-height: 1.4;
+    font-size: 10.5px;
+    line-height: 1.35;
   }
 
   .hero__panel {
     border-radius: 20px;
-    padding: 22px 20px;
+    padding: 20px 18px;
   }
 
   .hero__panel-mark {
-    font-size: 120px;
-    top: -22px;
+    font-size: 110px;
+    top: -20px;
+  }
+
+  .hero__focus-item {
+    padding: 13px 0;
   }
 
   .hero__panel-footer {
     grid-template-columns: 1fr;
-    gap: 14px;
+    gap: 12px;
   }
 
   .hero__scroll-hint {

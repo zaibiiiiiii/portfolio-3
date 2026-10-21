@@ -6,6 +6,7 @@ import Skills from './components/Skills/Skills';
 import Experience from './components/Experience/Experience';
 import Projects from './components/Projects/Projects';
 import Contact from './components/Contact/Contact';
+import MobileCTA from './components/MobileCTA/MobileCTA';
 
 const SectionDivider = () => <div className="section-divider" aria-hidden="true" />;
 
@@ -21,6 +22,7 @@ const App = () => {
         <Projects />
         <Contact />
       </main>
+      <MobileCTA />
     </>
   );
 };

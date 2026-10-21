@@ -1,0 +1,68 @@
+.mobile-cta {
+  position: fixed;
+  right: 12px;
+  bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+  left: 12px;
+  z-index: 900;
+  display: none;
+  gap: 10px;
+  padding: 8px;
+  border: 1px solid var(--hairline);
+  border-radius: 16px;
+  background: rgba(252, 252, 251, 0.92);
+  box-shadow: 0 16px 40px rgba(16, 22, 25, 0.18);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  opacity: 0;
+  transform: translateY(calc(100% + 24px));
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.mobile-cta--visible {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.mobile-cta__primary {
+  display: inline-flex;
+  flex: 1;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 11px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 14.5px;
+  font-weight: 600;
+}
+
+.mobile-cta__secondary {
+  display: inline-flex;
+  min-width: 56px;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #d4dcdd;
+  border-radius: 11px;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+@media (max-width: 700px) {
+  .mobile-cta {
+    display: flex;
+    pointer-events: none;
+  }
+
+  main {
+    padding-bottom: 76px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-cta {
+    transition: none;
+  }
+}

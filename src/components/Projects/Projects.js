@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import useIntersectionObserver from '../../hooks/useIntersectionObserver';
 import TechBadge from '../TechBadge/TechBadge';
@@ -144,6 +144,7 @@ const CapabilityIcon = ({ type }) => {
 const AppProject = ({ project, index }) => {
   const [activeImage, setActiveImage] = useState(0);
   const deviceRef = useRef(null);
+  const thumbsRef = useRef(null);
   const reduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
     target: deviceRef,
@@ -155,6 +156,16 @@ const AppProject = ({ project, index }) => {
   const thumbs = thumbMap[project.imageSet] || [];
   const logo = logoMap[project.logoKey];
   const activeGallery = project.gallery?.[activeImage];
+
+  // Keep the active thumbnail in view when the strip overflows (phones).
+  // Scrolls the strip only — never the page.
+  useEffect(() => {
+    const strip = thumbsRef.current;
+    const el = strip?.children[activeImage];
+    if (!strip || !el) return;
+    const left = el.offsetLeft - (strip.clientWidth - el.clientWidth) / 2;
+    strip.scrollTo?.({ left, behavior: reduceMotion ? 'auto' : 'smooth' });
+  }, [activeImage, reduceMotion]);
 
   return (
     <motion.article
@@ -321,7 +332,11 @@ const AppProject = ({ project, index }) => {
                 <p className="app-project__gallery-hint">
                   Browse all {project.gallery.length} screens · tap one to preview it on the device
                 </p>
-                <div className="app-project__thumbs" aria-label={`${project.name} screenshots`}>
+                <div
+                  ref={thumbsRef}
+                  className="app-project__thumbs"
+                  aria-label={`${project.name} screenshots`}
+                >
                   {project.gallery.map((item, thumbIndex) => (
                     <button
                       key={item.label}
