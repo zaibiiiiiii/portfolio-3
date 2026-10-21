@@ -3,8 +3,23 @@ import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion
 import useIntersectionObserver from '../../hooks/useIntersectionObserver';
 import TechBadge from '../TechBadge/TechBadge';
 import { personalInfo, projects, webProjects } from '../../utils/data';
-import controlOverview from '../Assets/novus-control-overview.png';
-import controlTasks from '../Assets/novus-control-tasks.png';
+import controlScreen01 from '../Assets/novus-control-screen-01.jpg';
+import controlScreen02 from '../Assets/novus-control-screen-02.jpg';
+import controlScreen03 from '../Assets/novus-control-screen-03.jpg';
+import controlScreen04 from '../Assets/novus-control-screen-04.jpg';
+import controlScreen05 from '../Assets/novus-control-screen-05.jpg';
+import controlScreen06 from '../Assets/novus-control-screen-06.jpg';
+import controlScreen07 from '../Assets/novus-control-screen-07.jpg';
+import controlScreen08 from '../Assets/novus-control-screen-08.jpg';
+import controlScreen09 from '../Assets/novus-control-screen-09.jpg';
+import controlScreen10 from '../Assets/novus-control-screen-10.jpg';
+import controlScreen11 from '../Assets/novus-control-screen-11.jpg';
+import controlScreen12 from '../Assets/novus-control-screen-12.jpg';
+import controlScreen13 from '../Assets/novus-control-screen-13.jpg';
+import controlScreen14 from '../Assets/novus-control-screen-14.jpg';
+import controlScreen15 from '../Assets/novus-control-screen-15.jpg';
+import controlScreen16 from '../Assets/novus-control-screen-16.jpg';
+import controlScreen17 from '../Assets/novus-control-screen-17.jpg';
 import proPatrol from '../Assets/novus-pro-patrol.png';
 import proReporting from '../Assets/novus-pro-reporting.png';
 import rayanLogo from '../Assets/assets rayyan instructor/rayan_driving_instructor_logo.webp';
@@ -17,7 +32,25 @@ import rayanBooking from '../Assets/rayan-booking.png';
 import './Projects.css';
 
 const imageMap = {
-  control: [controlOverview, controlTasks],
+  control: [
+    controlScreen01,
+    controlScreen02,
+    controlScreen03,
+    controlScreen04,
+    controlScreen05,
+    controlScreen06,
+    controlScreen07,
+    controlScreen08,
+    controlScreen09,
+    controlScreen10,
+    controlScreen11,
+    controlScreen12,
+    controlScreen13,
+    controlScreen14,
+    controlScreen15,
+    controlScreen16,
+    controlScreen17,
+  ],
   pro: [proPatrol, proReporting],
   rayan: [rayanProfile, rayanLessons, rayanReschedule, rayanRequests, rayanStatus, rayanBooking],
 };
@@ -205,16 +238,12 @@ const AppProject = ({ project, index }) => {
                 <span className="app-project__device-button app-project__device-button--power" aria-hidden="true" />
                 <span className="app-project__device-button app-project__device-button--volume" aria-hidden="true" />
                 <div className="app-project__device-screen">
-                  <div className="app-project__device-camera" aria-hidden="true">
-                    <span />
-                  </div>
                   <img
                     src={images[activeImage]}
                     alt={`${project.name} app screen: ${activeGallery?.label || 'preview'}`}
                     className="app-project__image"
                     loading="lazy"
                   />
-                  <span className="app-project__device-home" aria-hidden="true" />
                 </div>
               </motion.div>
             </div>
@@ -233,29 +262,34 @@ const AppProject = ({ project, index }) => {
             )}
 
             {project.gallery?.length > 1 && (
-              <div className="app-project__thumbs" aria-label={`${project.name} screenshots`}>
-                {project.gallery.map((item, thumbIndex) => (
-                  <button
-                    key={item.label}
-                    type="button"
-                    className={`app-project__thumb${activeImage === thumbIndex ? ' app-project__thumb--active' : ''}`}
-                    onClick={() => setActiveImage(thumbIndex)}
-                    aria-label={`Show ${project.name} ${item.label}`}
-                    aria-pressed={activeImage === thumbIndex}
-                  >
-                    <img
-                      src={images[thumbIndex]}
-                      alt=""
-                      className="app-project__thumb-image"
-                      loading="lazy"
-                      aria-hidden="true"
-                    />
-                    <span className="app-project__thumb-label">
-                      {item.shortLabel || item.label}
-                    </span>
-                  </button>
-                ))}
-              </div>
+              <>
+                <p className="app-project__gallery-hint">
+                  Browse all {project.gallery.length} screens · swipe or scroll to explore
+                </p>
+                <div className="app-project__thumbs" aria-label={`${project.name} screenshots`}>
+                  {project.gallery.map((item, thumbIndex) => (
+                    <button
+                      key={item.label}
+                      type="button"
+                      className={`app-project__thumb${activeImage === thumbIndex ? ' app-project__thumb--active' : ''}`}
+                      onClick={() => setActiveImage(thumbIndex)}
+                      aria-label={`Show ${project.name} ${item.label}`}
+                      aria-pressed={activeImage === thumbIndex}
+                    >
+                      <img
+                        src={images[thumbIndex]}
+                        alt=""
+                        className="app-project__thumb-image"
+                        loading="lazy"
+                        aria-hidden="true"
+                      />
+                      <span className="app-project__thumb-label">
+                        {item.shortLabel || item.label}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </>
             )}
           </>
         )}

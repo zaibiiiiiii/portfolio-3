@@ -184,12 +184,89 @@ export const projects = [
     },
     gallery: [
       {
-        label: 'Operations overview',
-        caption: 'A snapshot of live activity, recent events, and key operational signals.',
+        shortLabel: 'Sign in',
+        label: 'Secure sign-in',
+        caption: 'The app entry screen for control-room users.',
       },
       {
-        label: 'Task management',
-        caption: 'A task list with scheduled, active, and completed work at a glance.',
+        shortLabel: 'Modules',
+        label: 'Module shortcuts',
+        caption: 'Quick access to the operational modules from one dashboard.',
+      },
+      {
+        shortLabel: 'Locations',
+        label: 'Officer locations',
+        caption: 'A live map paired with officer status and location controls.',
+      },
+      {
+        shortLabel: 'Job',
+        label: 'Job details',
+        caption: 'Job status, field activity, and available response actions.',
+      },
+      {
+        shortLabel: 'Overview',
+        label: 'Operations dashboard',
+        caption: 'Welfare, watchlist, job, and activity summaries in the control overview.',
+      },
+      {
+        shortLabel: 'SOS',
+        label: 'Discreet SOS response',
+        caption: 'An alert view that brings nearby responder options into the response flow.',
+      },
+      {
+        shortLabel: 'Patrols',
+        label: 'Patrol templates',
+        caption: 'Reusable patrol routes with waypoint and site context.',
+      },
+      {
+        shortLabel: 'Search',
+        label: 'SOS search status',
+        caption: 'A live search state with distance and response controls.',
+      },
+      {
+        shortLabel: 'Watchlist',
+        label: 'Watchlist',
+        caption: 'A focused list for monitoring and managing flagged records.',
+      },
+      {
+        shortLabel: 'AI chat',
+        label: 'NG Assistant',
+        caption: 'An in-app assistant experience for navigating operational information.',
+      },
+      {
+        shortLabel: 'Events',
+        label: 'Completed events',
+        caption: 'Completed activity presented in a filterable event view.',
+      },
+      {
+        shortLabel: 'Check call',
+        label: 'Missed check-call SOS',
+        caption: 'A missed check-call alert with nearby responder context.',
+      },
+      {
+        shortLabel: 'Patrol map',
+        label: 'Patrol dashboard',
+        caption: 'Patrol activity, route status, and field context together on one screen.',
+      },
+      {
+        shortLabel: 'Incident',
+        label: 'Incident coordination',
+        caption: 'A message-based incident brief with actions for coordinating a response.',
+      },
+      {
+        shortLabel: 'Crime data',
+        label: 'Crime data lookup',
+        caption: 'Search parameters and result cards in the crime-data lookup flow.',
+      },
+      {
+        shortLabel: 'Vehicles',
+        label: 'Vehicle details',
+        caption: 'A vehicle record with operational details and settings.',
+      },
+      {
+        shortLabel: 'Voice',
+        label: 'Voice assistant',
+        caption: 'Voice and text shortcuts for common control-app actions.',
       },
     ],
     imageSet: 'control',

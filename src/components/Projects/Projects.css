@@ -401,18 +401,33 @@
 
 .app-project__thumbs {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 10px;
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 4px 2px 10px;
+  scroll-snap-type: x mandatory;
+  scrollbar-color: rgba(120, 147, 255, 0.4) transparent;
+  scrollbar-width: thin;
+}
+
+.app-project__gallery-hint {
+  margin-bottom: -8px;
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.5;
 }
 
 .app-project__thumb {
   width: 72px;
+  flex: 0 0 72px;
   padding: 6px;
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
   display: grid;
   gap: 6px;
+  scroll-snap-align: start;
   transition: var(--transition);
 }
 
@@ -429,9 +444,19 @@
 
 .app-project__thumb-image {
   width: 100%;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
+  aspect-ratio: 9 / 19.2;
+  object-fit: contain;
   border-radius: 10px;
+  background: #edf3f1;
+}
+
+.app-project__thumbs::-webkit-scrollbar {
+  height: 6px;
+}
+
+.app-project__thumbs::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(120, 147, 255, 0.4);
 }
 
 .app-project__thumb-label {

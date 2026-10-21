@@ -78,29 +78,31 @@ describe('project gallery widget', () => {
   });
 
   test('changes the featured screenshot when a thumbnail is selected', () => {
-    const screenshot = container.querySelector('.app-project__image');
+    const firstProject = container.querySelector('.app-project');
+    const screenshot = firstProject.querySelector('.app-project__image');
     const thumbnail = container.querySelector(
-      'button[aria-label="Show Novus Guard Control Task management"]'
+      'button[aria-label="Show Novus Guard Control Module shortcuts"]'
     );
 
     expect(screenshot.alt).toBe(
-      'Novus Guard Control app screen: Operations overview'
+      'Novus Guard Control app screen: Secure sign-in'
     );
+    expect(firstProject.querySelectorAll('.app-project__thumb').length).toBe(17);
     expect(thumbnail.getAttribute('aria-pressed')).toBe('false');
     expect(thumbnail.getAttribute('aria-label')).toBe(
-      'Show Novus Guard Control Task management'
+      'Show Novus Guard Control Module shortcuts'
     );
 
     act(() => {
       thumbnail.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     });
 
-    expect(container.querySelector('.app-project__image').alt).toBe(
-      'Novus Guard Control app screen: Task management'
+    expect(firstProject.querySelector('.app-project__image').alt).toBe(
+      'Novus Guard Control app screen: Module shortcuts'
     );
     expect(
-      container.querySelector(
-        'button[aria-label="Show Novus Guard Control Task management"]'
+      firstProject.querySelector(
+        'button[aria-label="Show Novus Guard Control Module shortcuts"]'
       ).getAttribute('aria-pressed')
     ).toBe('true');
   });

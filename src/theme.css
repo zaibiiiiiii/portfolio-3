@@ -1194,8 +1194,9 @@ main {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: top center;
+  object-fit: contain;
+  object-position: center;
+  background: #f0f4f3;
 }
 
 .app-project__device-camera {
