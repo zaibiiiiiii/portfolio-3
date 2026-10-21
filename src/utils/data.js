@@ -78,9 +78,9 @@ export const skillGroups = [
     skills: ['Python', 'JavaScript', 'Grounded RAG', 'Model Context Protocol (MCP)', 'Agent Workflows', 'Docker Sandboxes', 'Automated QA', 'Human-in-the-Loop Reviews', 'Evaluation Loops'],
   },
   {
-    title: 'Delivery Support',
-    description: 'Supporting skills that help products feel production-ready.',
-    skills: ['HTML and CSS', 'WordPress', 'Manual SQA', 'QA Collaboration'],
+    title: 'Engineering Workflow & Delivery',
+    description: 'How the work ships: version control, automated pipelines, and the supporting craft that keeps delivery production-ready.',
+    skills: ['Git', 'GitHub', 'GitHub Actions', 'CI/CD Pipelines', 'HTML and CSS', 'WordPress', 'Manual SQA', 'QA Collaboration'],
   },
 ];
 
