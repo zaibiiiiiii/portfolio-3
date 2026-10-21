@@ -1,7 +1,7 @@
 export const personalInfo = {
   name: 'Syed Zohaib Kashif',
   role: 'Mobile Engineer',
-  headline: 'Mobile apps & grounded AI.',
+  headline: 'Mobile apps & Automated AI Workflows.',
   summary:
     'I build Flutter products for security, logistics, and ERP teams—and Python and JavaScript AI workflows grounded in project knowledge.',
   email: 'zohaibkashif@hotmail.com',
@@ -465,6 +465,53 @@ export const webProjects = [
     url: 'https://oakbusinessconsultant.com',
     category: 'WordPress',
     blurb: 'Business services site built to present offerings and credibility cleanly.',
+  },
+];
+
+export const services = [
+  {
+    title: 'End-to-end Flutter apps',
+    description: 'From design handoff to store release: architecture, features, testing, and shipping to both the App Store and Google Play.',
+  },
+  {
+    title: 'Mobile rescue & polish',
+    description: 'Inheriting an existing Flutter codebase and making it stable, performant, and maintainable without freezing feature work.',
+  },
+  {
+    title: 'Field systems & integrations',
+    description: 'GPS and geofencing, NFC and QR verification, offline-first sync, ERP and REST connections, and real-time communication.',
+  },
+  {
+    title: 'AI agent workflows',
+    description: 'Grounded retrieval over your docs and code, sandboxed execution, and automated QA loops that make agent output reviewable.',
+  },
+];
+
+export const faqs = [
+  {
+    question: 'Are you available, and how fast do you respond?',
+    answer:
+      'I am open to full-time roles and high-impact freelance work. I usually reply to email within 24 hours, and I work from Karachi (UTC+5), with flexible overlap for European mornings and calls arranged around your team\'s hours.',
+  },
+  {
+    question: 'Can you join an existing codebase?',
+    answer:
+      'Yes — most of my work has been inside live products. I am comfortable inheriting a Flutter codebase, learning its edges quickly, and improving stability and structure while feature work continues.',
+  },
+  {
+    question: 'What does a freelance engagement look like?',
+    answer:
+      'Focused and scoped: a feature, an integration, or a polish sprint with clear deliverables and regular progress you can see running — not a black box. Full-time is also an option if the fit is right.',
+  },
+  {
+    question: 'Have you shipped apps to the stores?',
+    answer:
+      'Yes — products I worked on are live on both the App Store and Google Play, including Novus Guard Control and Novus Guard Pro, real security-operations apps used in the field.',
+  },
+  {
+    question: 'What do you need from me to start?',
+    answer:
+      'A short note on what you are building or improving, who uses it, and what makes the workflow complex. From there I can tell you quickly whether I am the right fit and what a realistic path looks like.',
   },
 ];
 
