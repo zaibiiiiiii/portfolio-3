@@ -3,7 +3,7 @@ export const personalInfo = {
   role: 'Mobile Engineer',
   headline: 'Mobile apps & Automated AI Workflows.',
   summary:
-    'I build Optima AI Factory, a self-improving engineering harness grounded in repository wikis and guardrails, alongside production Flutter products for security, logistics, and ERP teams.',
+    'I build reliable cross-platform mobile apps for teams in security, logistics, and ERP—and created Optima AI Factory to make repository-grounded engineering workflows more reviewable',
   email: 'zohaibkashif@hotmail.com',
   phone: '+92 332 2349305',
   linkedin: 'https://www.linkedin.com/in/syedzohaib-kashif-311a20241',
@@ -409,6 +409,7 @@ export const projects = [
       'Made invoice workflows easier to complete from mobile instead of relying on fragmented manual steps.',
     tags: ['Flutter', 'REST API', 'Invoice Management'],
     platforms: ['Android', 'iOS'],
+    githubUrl: 'https://github.com/zaibiiiiiii/LDS-',
     featured: false,
   },
   {
@@ -504,9 +505,37 @@ export const projects = [
     ],
     featured: true,
   },
+  {
+    id: 7,
+    name: 'Foods Spot',
+    category: 'Restaurant Ordering App',
+    summary:
+      'Flutter restaurant app for browsing products, saving favorites, managing a cart, and checking out.',
+    impact:
+      'Brings the core restaurant browse-to-checkout flow into one mobile experience.',
+    tags: ['Flutter', 'E-commerce', 'Product Catalog', 'Cart', 'Checkout'],
+    platforms: ['Android', 'iOS'],
+    githubUrl: 'https://github.com/zaibiiiiiii/FoodsSpot',
+    featured: false,
+  },
 ];
 
 export const webProjects = [
+  {
+    name: 'DSI Hospital',
+    url: 'https://dsi-hospital.vercel.app/',
+    category: 'Healthcare Website',
+    blurb:
+      'Hospital website presenting 24/7 emergency care, departments, medical team, facilities, and appointment options.',
+  },
+  {
+    name: 'Al-Madina',
+    url: 'https://al-madina-six.vercel.app',
+    githubUrl: 'https://github.com/zaibiiiiiii/Al-Madina',
+    category: 'Next.js · E-commerce',
+    blurb:
+      'Restaurant storefront and admin portal with menu browsing, cart and checkout, plus product, order, and inventory workflows.',
+  },
   {
     name: 'Novus Guard',
     url: 'https://www.novusguard.co.uk/',

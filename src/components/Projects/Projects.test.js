@@ -124,4 +124,18 @@ describe('project gallery widget', () => {
     expect(container.textContent).toContain('without needing GPS');
     expect(container.textContent).toContain('release-dependent');
   });
+
+  test('renders the added public projects and their source links', () => {
+    expect(container.textContent).toContain('Foods Spot');
+    expect(container.textContent).toContain('Al-Madina');
+    expect(
+      container.querySelector('a[href="https://github.com/zaibiiiiiii/FoodsSpot"]')
+    ).toBeTruthy();
+    expect(
+      container.querySelector('a[href="https://github.com/zaibiiiiiii/LDS-"]')
+    ).toBeTruthy();
+    expect(
+      container.querySelector('a[href="https://github.com/zaibiiiiiii/Al-Madina"]')
+    ).toBeTruthy();
+  });
 });

@@ -1,4 +1,4 @@
-import { experiences, personalInfo, projects, skillGroups } from './data';
+import { experiences, personalInfo, projects, skillGroups, webProjects } from './data';
 
 describe('portfolio content', () => {
   test('includes valid primary contact and profile details', () => {
@@ -67,5 +67,18 @@ describe('portfolio content', () => {
       expect(storeLinks.ios).toMatch(/^https:\/\/apps\.apple\.com\//);
       expect(storeLinks.android).toMatch(/^https:\/\/play\.google\.com\//);
     });
+  });
+
+  test('includes public GitHub projects with working source links', () => {
+    const foodsSpot = projects.find((project) => project.name === 'Foods Spot');
+    const lds = projects.find((project) => project.name === 'LDS E-Invoicing System');
+    const alMadina = webProjects.find((project) => project.name === 'Al-Madina');
+    const dsiHospital = webProjects.find((project) => project.name === 'DSI Hospital');
+
+    expect(foodsSpot.githubUrl).toBe('https://github.com/zaibiiiiiii/FoodsSpot');
+    expect(lds.githubUrl).toBe('https://github.com/zaibiiiiiii/LDS-');
+    expect(alMadina.url).toBe('https://al-madina-six.vercel.app');
+    expect(alMadina.githubUrl).toBe('https://github.com/zaibiiiiiii/Al-Madina');
+    expect(dsiHospital.url).toBe('https://dsi-hospital.vercel.app/');
   });
 });

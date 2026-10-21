@@ -405,6 +405,17 @@ const OtherProject = ({ project }) => (
         <TechBadge key={tag} label={tag} variant="tag" />
       ))}
     </div>
+    {project.githubUrl && (
+      <a
+        href={project.githubUrl}
+        target="_blank"
+        rel="noreferrer"
+        className="other-project__link"
+        aria-label={`View ${project.name} source on GitHub (opens in new tab)`}
+      >
+        View source on GitHub <ExternalIcon />
+      </a>
+    )}
   </article>
 );
 
@@ -453,21 +464,35 @@ const Projects = () => {
           <h3 className="projects__other-title">Selected web work</h3>
           <div className="projects__web-grid">
             {webProjects.map((project) => (
-              <a
-                key={project.name}
-                href={project.url}
-                target="_blank"
-                rel="noreferrer"
-                className="web-project"
-                aria-label={`Visit ${project.name} (opens in new tab)`}
-              >
+              <div key={project.name} className="web-project">
                 <div className="web-project__content">
                   <TechBadge label={project.category} variant="tag" />
                   <span className="web-project__name">{project.name}</span>
                   <span className="web-project__blurb">{project.blurb}</span>
                 </div>
-                <ExternalIcon />
-              </a>
+                <div className="web-project__links">
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="web-project__link"
+                    aria-label={`Visit ${project.name} (opens in new tab)`}
+                  >
+                    Visit site <ExternalIcon />
+                  </a>
+                  {project.githubUrl && (
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="web-project__link"
+                      aria-label={`View ${project.name} source on GitHub (opens in new tab)`}
+                    >
+                      GitHub <ExternalIcon />
+                    </a>
+                  )}
+                </div>
+              </div>
             ))}
           </div>
         </div>

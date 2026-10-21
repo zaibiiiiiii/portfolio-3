@@ -875,6 +875,27 @@
   margin-top: 14px;
 }
 
+.other-project__link,
+.web-project__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.other-project__link {
+  margin-top: 14px;
+}
+
+.other-project__link:hover,
+.other-project__link:focus-visible,
+.web-project__link:hover,
+.web-project__link:focus-visible {
+  color: var(--ink);
+}
+
 /* ─── Web projects ─── */
 .projects__web-grid {
   display: grid;
@@ -906,6 +927,13 @@
 .web-project__content {
   display: grid;
   gap: 4px;
+}
+
+.web-project__links {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
 }
 
 .web-project__name {
