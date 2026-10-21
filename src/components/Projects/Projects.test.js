@@ -77,21 +77,23 @@ describe('project gallery widget', () => {
     expect(container.textContent).toContain('GLiNER helps match a task');
     expect(container.textContent).toContain('Optima and subagents over MCP');
     expect(container.textContent).toContain('Verify, review, and learn');
-    expect(container.textContent).toContain('MCP-connected semantic retrieval');
+    expect(container.textContent).toContain('Repository-grounded agents');
     expect(container.textContent.toLowerCase()).toContain('isolated docker sandboxes');
   });
 
   test('changes the featured screenshot when a thumbnail is selected', () => {
-    const firstProject = container.querySelector('.app-project');
-    const screenshot = firstProject.querySelector('.app-project__image');
-    const thumbnail = container.querySelector(
+    const galleryProject = [...container.querySelectorAll('.app-project')].find(
+      (project) => project.querySelector('.app-project__thumb')
+    );
+    const screenshot = galleryProject.querySelector('.app-project__image');
+    const thumbnail = galleryProject.querySelector(
       'button[aria-label="Show Novus Guard Control Module shortcuts"]'
     );
 
     expect(screenshot.alt).toBe(
       'Novus Guard Control app screen: Secure sign-in'
     );
-    expect(firstProject.querySelectorAll('.app-project__thumb').length).toBe(17);
+    expect(galleryProject.querySelectorAll('.app-project__thumb').length).toBe(17);
     expect(thumbnail.getAttribute('aria-pressed')).toBe('false');
     expect(thumbnail.getAttribute('aria-label')).toBe(
       'Show Novus Guard Control Module shortcuts'
@@ -101,11 +103,11 @@ describe('project gallery widget', () => {
       thumbnail.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     });
 
-    expect(firstProject.querySelector('.app-project__image').alt).toBe(
+    expect(galleryProject.querySelector('.app-project__image').alt).toBe(
       'Novus Guard Control app screen: Module shortcuts'
     );
     expect(
-      firstProject.querySelector(
+      galleryProject.querySelector(
         'button[aria-label="Show Novus Guard Control Module shortcuts"]'
       ).getAttribute('aria-pressed')
     ).toBe('true');

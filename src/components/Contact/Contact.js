@@ -35,10 +35,18 @@ const GithubIcon = () => (
   </svg>
 );
 
+export const buildContactEmailUrl = ({ name, email, interest, message }) => {
+  const subject = `Portfolio inquiry: ${interest}`;
+  const body = [`Name: ${name}`, `Email: ${email}`, `Interest: ${interest}`, '', message].join('\n');
+
+  return `mailto:${personalInfo.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+};
+
 const Contact = () => {
   const [ref, isVisible] = useIntersectionObserver();
   const [copyStatus, setCopyStatus] = useState('');
   const [formStatus, setFormStatus] = useState('');
+  const [emailDraftUrl, setEmailDraftUrl] = useState('');
 
   useEffect(() => {
     if (!copyStatus) {
@@ -63,20 +71,14 @@ const Contact = () => {
     }
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    const formData = new FormData(event.target);
-    const data = Object.fromEntries(formData);
+    const formData = new FormData(event.currentTarget);
+    const emailUrl = buildContactEmailUrl(Object.fromEntries(formData.entries()));
 
-    try {
-      // In production, this posts to a form endpoint (Formspree, EmailJS, etc.)
-      // For now, we simulate a successful submission.
-      setFormStatus('success');
-      event.target.reset();
-      setTimeout(() => setFormStatus(''), 5000);
-    } catch {
-      setFormStatus('error');
-    }
+    setEmailDraftUrl(emailUrl);
+    setFormStatus('draft');
+    window.location.href = emailUrl;
   };
 
   return (
@@ -90,7 +92,7 @@ const Contact = () => {
             existing mobile product. The fastest way to reach me is email.
           </p>
 
-          <form className="contact__form" onSubmit={handleSubmit} noValidate>
+          <form className="contact__form" onSubmit={handleSubmit}>
             <div className="contact__form-group">
               <label htmlFor="contact-name" className="contact__form-label">
                 Name
@@ -144,8 +146,11 @@ const Contact = () => {
             <button type="submit" className="contact__form-submit contact__cta contact__cta--primary">
               Send Message
             </button>
-            {formStatus && (
-              <p className="contact__form-status">{formStatus === 'success' ? 'Message sent — I will get back to you within 24 hours.' : 'Something went wrong. Please email me directly instead.'}</p>
+            {formStatus === 'draft' && (
+              <p className="contact__form-status" role="status" aria-live="polite">
+                Your email app should open with your message ready. Press Send in your email app to deliver it.{' '}
+                <a href={emailDraftUrl}>Open the email draft</a>
+              </p>
             )}
           </form>
 

@@ -30,6 +30,15 @@ test.describe('Portfolio Dark Mode Verification', () => {
     await page.locator('#hero').screenshot({ path: 'tests/visual/screenshots/light-hero.png' });
   });
 
+  test('scrolled light-mode navigation remains readable', async ({ page }) => {
+    await page.evaluate(() => window.scrollTo(0, 120));
+    await expect(page.locator('.navbar')).toHaveClass(/navbar--scrolled/);
+
+    await expect(page.locator('.navbar__logo-text')).toHaveCSS('color', 'rgb(241, 247, 246)');
+    await expect(page.locator('.navbar__link').first()).toHaveCSS('color', 'rgb(168, 189, 185)');
+    await expect(page.locator('.navbar__cta')).toHaveCSS('background-color', 'rgb(102, 201, 174)');
+  });
+
   test('Dark mode toggles correctly', async ({ page }) => {
     // Click the theme toggle in the navbar
     const themeToggle = page.locator('.theme-toggle');

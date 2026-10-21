@@ -1,7 +1,7 @@
 import React from 'react';
 import { act } from 'react';
 import { createRoot } from 'react-dom/client';
-import Contact from './Contact';
+import Contact, { buildContactEmailUrl } from './Contact';
 import { personalInfo } from '../../utils/data';
 
 globalThis.IS_REACT_ACT_ENVIRONMENT = true;
@@ -47,6 +47,34 @@ describe('contact actions', () => {
         value: originalClipboard,
       });
     }
+  });
+
+  test('builds an email draft with the form details addressed to the portfolio owner', () => {
+    const emailUrl = buildContactEmailUrl({
+      name: 'Alex Example',
+      email: 'alex@example.com',
+      interest: 'full-time',
+      message: 'I would like to discuss a role.',
+    });
+    const [recipient, query] = emailUrl.slice('mailto:'.length).split('?');
+    const params = new URLSearchParams(query);
+
+    expect(recipient).toBe(personalInfo.email);
+    expect(params.get('subject')).toBe('Portfolio inquiry: full-time');
+    expect(params.get('body')).toBe(
+      'Name: Alex Example\nEmail: alex@example.com\nInterest: full-time\n\nI would like to discuss a role.'
+    );
+  });
+
+  test('keeps native required-field and email validation enabled', () => {
+    const form = container.querySelector('.contact__form');
+
+    expect(form.hasAttribute('novalidate')).toBe(false);
+    expect(form.querySelector('[name="name"]').required).toBe(true);
+    expect(form.querySelector('[name="email"]').type).toBe('email');
+    expect(form.querySelector('[name="email"]').required).toBe(true);
+    expect(form.querySelector('[name="interest"]').required).toBe(true);
+    expect(form.querySelector('[name="message"]').required).toBe(true);
   });
 
   test('confirms when the email address is copied', async () => {

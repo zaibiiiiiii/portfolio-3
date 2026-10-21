@@ -2,6 +2,7 @@ import React from 'react';
 import { act } from 'react';
 import { createRoot } from 'react-dom/client';
 import Navbar from './Navbar';
+import { ThemeProvider } from '../Theme/ThemeContext';
 
 globalThis.IS_REACT_ACT_ENVIRONMENT = true;
 globalThis.IntersectionObserver = class IntersectionObserver {
@@ -18,6 +19,13 @@ globalThis.IntersectionObserver = class IntersectionObserver {
 
   disconnect() {}
 };
+window.matchMedia = window.matchMedia || (() => ({
+  matches: false,
+  addListener() {},
+  removeListener() {},
+  addEventListener() {},
+  removeEventListener() {},
+}));
 
 describe('responsive primary navigation', () => {
   let container;
@@ -42,7 +50,11 @@ describe('responsive primary navigation', () => {
     document.body.appendChild(container);
     root = createRoot(container);
     act(() => {
-      root.render(<Navbar />);
+      root.render(
+        <ThemeProvider>
+          <Navbar />
+        </ThemeProvider>
+      );
     });
   });
 
