@@ -52,6 +52,7 @@ const Hero = () => {
         </div>
 
         <aside className="hero__panel animate-fade-up" style={{ animationDelay: '0.24s', opacity: 0 }}>
+          <span className="hero__panel-mark" aria-hidden="true">SZK</span>
           <div className="hero__panel-top">
             <span className="hero__panel-kicker">What teams hire me for</span>
             <span className="hero__panel-availability">{personalInfo.availability}</span>
