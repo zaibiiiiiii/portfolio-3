@@ -1,11 +1,25 @@
+import { useRef } from 'react';
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import './Hero.css';
 import { focusAreas, heroStats, personalInfo } from '../../utils/data';
 
 const Hero = () => {
+  const heroRef = useRef(null);
+  const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
+
+  // Layers drift at different speeds as the hero scrolls away
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, reduceMotion ? 0 : 90]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.85], [1, reduceMotion ? 1 : 0.2]);
+  const panelY = useTransform(scrollYProgress, [0, 1], [0, reduceMotion ? 0 : -64]);
+
   return (
-    <section id="hero" className="hero">
+    <section id="hero" className="hero" ref={heroRef}>
       <div className="hero__inner">
-        <div className="hero__content">
+        <motion.div className="hero__content" style={{ y: contentY, opacity: contentOpacity }}>
           <div className="hero__eyebrow animate-fade-up" style={{ animationDelay: '0.05s', opacity: 0 }}>
             <span className="hero__eyebrow-dot" />
             {personalInfo.currentRole}
@@ -49,9 +63,12 @@ const Hero = () => {
               </div>
             ))}
           </div>
-        </div>
+        </motion.div>
 
-        <aside className="hero__panel animate-fade-up" style={{ animationDelay: '0.24s', opacity: 0 }}>
+        <motion.aside
+          className="hero__panel animate-fade-up"
+          style={{ animationDelay: '0.24s', opacity: 0, y: panelY }}
+        >
           <span className="hero__panel-mark" aria-hidden="true">SZK</span>
           <div className="hero__panel-top">
             <span className="hero__panel-kicker">What teams hire me for</span>
@@ -77,7 +94,7 @@ const Hero = () => {
               <span className="hero__panel-value">{personalInfo.responseTime}</span>
             </div>
           </div>
-        </aside>
+        </motion.aside>
       </div>
 
       <a href="#about" className="hero__scroll-hint">
