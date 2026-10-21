@@ -296,7 +296,6 @@ const TechBadge = ({ label, variant = 'tag' }) => {
         '--tech-surface': iconConfig?.surface || 'rgba(209, 217, 232, 0.12)',
         '--tech-border': iconConfig?.border || 'rgba(209, 217, 232, 0.2)',
       }}
-      title={label}
     >
       <span className="tech-badge__icon">
         {icon || <FallbackIcon text={abbreviation} />}

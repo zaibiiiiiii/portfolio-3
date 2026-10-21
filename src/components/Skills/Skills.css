@@ -1,7 +1,7 @@
 .skills {
   position: relative;
-  padding: 120px 32px;
-  background: rgba(9, 13, 25, 0.82);
+  padding: clamp(84px, 9vw, 124px) 32px;
+  background: rgba(232, 240, 237, 0.62);
   overflow: hidden;
 }
 
@@ -12,7 +12,7 @@
   width: 320px;
   height: 320px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(28, 196, 186, 0.12) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(22, 128, 113, 0.1) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -25,15 +25,14 @@
   width: 280px;
   height: 280px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(75, 110, 255, 0.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(18, 104, 121, 0.06) 0%, transparent 70%);
   filter: blur(40px);
   pointer-events: none;
-  animation: float 12s ease-in-out infinite;
 }
 
 .skills__inner {
   position: relative;
-  max-width: 1200px;
+  max-width: 1240px;
   margin: 0 auto;
   opacity: 0;
   transform: translateY(30px);
@@ -59,22 +58,26 @@
   gap: 18px;
 }
 
+.skills__groups > .skill-group:last-child {
+  grid-column: 1 / -1;
+}
+
 .skill-group {
-  padding: 26px;
-  border-radius: 28px;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.03) 100%),
-    rgba(11, 16, 30, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: clamp(22px, 3vw, 30px);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 32px rgba(25, 55, 57, 0.055);
   opacity: 0;
-  transition: border-color 0.3s ease, transform 0.3s ease;
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
   overflow: hidden;
 }
 
 .skill-group:hover {
-  border-color: rgba(120, 147, 255, 0.18);
+  border-color: rgba(18, 104, 121, 0.2);
   transform: translateY(-3px);
+  box-shadow: 0 22px 52px rgba(25, 55, 57, 0.1);
 }
 
 /* Gradient glow on hover */
@@ -82,7 +85,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 30% 0%, rgba(75, 110, 255, 0.06) 0%, transparent 60%);
+  background: radial-gradient(circle at 30% 0%, rgba(18, 104, 121, 0.05) 0%, transparent 60%);
   opacity: 0;
   transition: opacity 0.4s ease;
   pointer-events: none;
@@ -96,6 +99,7 @@
   font-family: var(--font-display);
   font-size: 28px;
   line-height: 1.1;
+  letter-spacing: -0.035em;
   color: var(--text-primary);
   margin-bottom: 10px;
 }
@@ -121,10 +125,6 @@
 
 @media (max-width: 640px) {
   .skills {
-    padding: 88px 24px;
-  }
-
-  .skill-group {
-    padding: 22px;
+    padding: 78px 20px;
   }
 }

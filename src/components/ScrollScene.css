@@ -1,0 +1,25 @@
+.space-canvas {
+  position: fixed;
+  z-index: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.24;
+  pointer-events: none;
+}
+
+.space-canvas--fallback {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .space-canvas {
+    opacity: 0.12;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .space-canvas {
+    display: none;
+  }
+}

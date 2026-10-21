@@ -1,5 +1,5 @@
 .about {
-  padding: 120px 32px;
+  padding: clamp(84px, 9vw, 124px) 32px;
   position: relative;
   overflow: hidden;
 }
@@ -13,18 +13,17 @@
   width: 380px;
   height: 380px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(75, 110, 255, 0.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(22, 128, 113, 0.07) 0%, transparent 70%);
   filter: blur(50px);
   pointer-events: none;
-  animation: float 10s ease-in-out infinite;
 }
 
 .about__inner {
-  max-width: 1200px;
+  max-width: 1240px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
-  gap: 52px;
+  gap: clamp(32px, 5vw, 64px);
   align-items: start;
   opacity: 0;
   transform: translateY(30px);
@@ -39,6 +38,7 @@
 .about__content {
   display: grid;
   gap: 20px;
+  min-width: 0;
 }
 
 .about__text {
@@ -56,9 +56,9 @@
 
 .about__detail {
   padding: 18px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  background: #f8fbfa;
+  border: 1px solid var(--border);
   display: grid;
   gap: 8px;
   transition: var(--transition);
@@ -67,15 +67,15 @@
 }
 
 .about__detail:hover {
-  border-color: rgba(120, 147, 255, 0.18);
-  transform: translateY(-2px);
+  border-color: rgba(18, 104, 121, 0.24);
+  background: #f2f8f6;
 }
 
 .about__detail::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% 0%, rgba(75, 110, 255, 0.05) 0%, transparent 70%);
+  background: radial-gradient(circle at 50% 0%, rgba(18, 104, 121, 0.05) 0%, transparent 70%);
   opacity: 0;
   transition: opacity 0.4s ease;
   pointer-events: none;
@@ -90,7 +90,7 @@
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: #53696d;
 }
 
 .about__detail-value {
@@ -106,26 +106,12 @@
 
 .about__card {
   padding: 28px;
-  border-radius: 28px;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.03) 100%),
-    rgba(13, 17, 31, 0.9);
-  border: 1px solid rgba(120, 147, 255, 0.14);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 32px rgba(25, 55, 57, 0.055);
   position: relative;
   overflow: hidden;
-}
-
-/* Decorative corner glow for the card */
-.about__card::before {
-  content: '';
-  position: absolute;
-  top: -30px;
-  right: -30px;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(28, 196, 186, 0.12) 0%, transparent 70%);
-  pointer-events: none;
 }
 
 .about__card-kicker {
@@ -134,8 +120,8 @@
   align-items: center;
   padding: 0 12px;
   border-radius: 999px;
-  background: rgba(75, 110, 255, 0.1);
-  color: var(--accent-soft);
+  background: rgba(18, 104, 121, 0.08);
+  color: #175c68;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -147,6 +133,7 @@
   font-family: var(--font-display);
   font-size: 28px;
   line-height: 1.1;
+  letter-spacing: -0.035em;
   color: var(--text-primary);
   margin-bottom: 22px;
 }
@@ -158,20 +145,21 @@
 
 .about__principle {
   padding: 18px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  background: #f8fbfa;
+  border: 1px solid var(--border);
   transition: var(--transition);
 }
 
 .about__principle:hover {
-  border-color: rgba(120, 147, 255, 0.15);
-  background: rgba(120, 147, 255, 0.03);
+  border-color: rgba(18, 104, 121, 0.24);
+  background: #f2f8f6;
 }
 
 .about__principle-title {
   font-size: 17px;
   font-weight: 600;
+  letter-spacing: -0.035em;
   color: var(--text-primary);
   margin-bottom: 8px;
 }
@@ -190,17 +178,16 @@
 
 .about__mini-card {
   padding: 18px;
-  border-radius: 22px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  background: #f8fbfa;
+  border: 1px solid var(--border);
   display: grid;
   gap: 8px;
   transition: var(--transition);
 }
 
 .about__mini-card:hover {
-  border-color: rgba(120, 147, 255, 0.18);
-  transform: translateY(-2px);
+  border-color: rgba(18, 104, 121, 0.24);
 }
 
 .about__mini-label {
@@ -208,7 +195,7 @@
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: #53696d;
 }
 
 .about__mini-value {
@@ -225,7 +212,7 @@
 
 @media (max-width: 640px) {
   .about {
-    padding: 88px 24px;
+    padding: 78px 20px;
   }
 
   .about__details,

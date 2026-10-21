@@ -7,6 +7,8 @@ export const personalInfo = {
   email: 'zohaibkashif@hotmail.com',
   phone: '+92 332 2349305',
   linkedin: 'https://www.linkedin.com/in/syedzohaib-kashif-311a20241',
+  github: 'https://github.com/biahoz-fihsak',
+  cvUrl: '/zohaib-kashif-cv.pdf',
   location: 'Karachi, Pakistan',
   availability: 'Open to full-time roles and high-impact freelance work.',
   currentRole: 'Mobile App Developer at Novus Altair UK',

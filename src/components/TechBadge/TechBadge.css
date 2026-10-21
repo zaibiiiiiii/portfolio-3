@@ -15,7 +15,7 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  background: var(--tech-surface);
+  background: color-mix(in srgb, var(--tech-surface) 60%, white);
   box-shadow: inset 0 0 0 1px var(--tech-border);
   color: var(--tech-ink);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -47,18 +47,18 @@
 /* ─── Skill variant ─── */
 .tech-badge--skill {
   width: 100%;
-  min-height: 54px;
+  min-height: 52px;
   padding: 11px 13px;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 13px;
+  background: #f8fbfa;
+  border: 1px solid var(--border);
   position: relative;
   overflow: hidden;
 }
 
 .tech-badge--skill:hover {
-  border-color: var(--tech-border);
-  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(18, 104, 121, 0.2);
+  background: #fff;
   transform: translateY(-2px);
 }
 
@@ -87,13 +87,13 @@
   min-height: 36px;
   padding: 5px 10px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #f6f9f8;
+  border: 1px solid var(--border);
 }
 
 .tech-badge--tag:hover {
   border-color: var(--tech-border);
-  background: rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.9);
 }
 
 .tech-badge--tag .tech-badge__icon,
@@ -112,6 +112,7 @@
 .tech-badge--tag .tech-badge__label {
   font-size: 12px;
   font-weight: 500;
+  color: #354e53;
 }
 
 /* ─── Footer variant ─── */
@@ -119,8 +120,8 @@
   min-height: 38px;
   padding: 6px 10px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(209, 238, 230, 0.12);
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .tech-badge--footer:hover {
@@ -130,4 +131,5 @@
 .tech-badge--footer .tech-badge__label {
   font-size: 12px;
   font-weight: 500;
+  color: #c4d8d3;
 }

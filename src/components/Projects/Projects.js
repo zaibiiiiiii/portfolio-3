@@ -3,32 +3,57 @@ import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion
 import useIntersectionObserver from '../../hooks/useIntersectionObserver';
 import TechBadge from '../TechBadge/TechBadge';
 import { personalInfo, projects, webProjects } from '../../utils/data';
-import controlScreen01 from '../Assets/novus-control-screen-01.jpg';
-import controlScreen02 from '../Assets/novus-control-screen-02.jpg';
-import controlScreen03 from '../Assets/novus-control-screen-03.jpg';
-import controlScreen04 from '../Assets/novus-control-screen-04.jpg';
-import controlScreen05 from '../Assets/novus-control-screen-05.jpg';
-import controlScreen06 from '../Assets/novus-control-screen-06.jpg';
-import controlScreen07 from '../Assets/novus-control-screen-07.jpg';
-import controlScreen08 from '../Assets/novus-control-screen-08.jpg';
-import controlScreen09 from '../Assets/novus-control-screen-09.jpg';
-import controlScreen10 from '../Assets/novus-control-screen-10.jpg';
-import controlScreen11 from '../Assets/novus-control-screen-11.jpg';
-import controlScreen12 from '../Assets/novus-control-screen-12.jpg';
-import controlScreen13 from '../Assets/novus-control-screen-13.jpg';
-import controlScreen14 from '../Assets/novus-control-screen-14.jpg';
-import controlScreen15 from '../Assets/novus-control-screen-15.jpg';
-import controlScreen16 from '../Assets/novus-control-screen-16.jpg';
-import controlScreen17 from '../Assets/novus-control-screen-17.jpg';
-import proPatrol from '../Assets/novus-pro-patrol.png';
-import proReporting from '../Assets/novus-pro-reporting.png';
+import controlScreen01 from '../Assets/novus-control-screen-01.webp';
+import controlScreen02 from '../Assets/novus-control-screen-02.webp';
+import controlScreen03 from '../Assets/novus-control-screen-03.webp';
+import controlScreen04 from '../Assets/novus-control-screen-04.webp';
+import controlScreen05 from '../Assets/novus-control-screen-05.webp';
+import controlScreen06 from '../Assets/novus-control-screen-06.webp';
+import controlScreen07 from '../Assets/novus-control-screen-07.webp';
+import controlScreen08 from '../Assets/novus-control-screen-08.webp';
+import controlScreen09 from '../Assets/novus-control-screen-09.webp';
+import controlScreen10 from '../Assets/novus-control-screen-10.webp';
+import controlScreen11 from '../Assets/novus-control-screen-11.webp';
+import controlScreen12 from '../Assets/novus-control-screen-12.webp';
+import controlScreen13 from '../Assets/novus-control-screen-13.webp';
+import controlScreen14 from '../Assets/novus-control-screen-14.webp';
+import controlScreen15 from '../Assets/novus-control-screen-15.webp';
+import controlScreen16 from '../Assets/novus-control-screen-16.webp';
+import controlScreen17 from '../Assets/novus-control-screen-17.webp';
+import proPatrol from '../Assets/novus-pro-patrol.webp';
+import proReporting from '../Assets/novus-pro-reporting.webp';
 import rayanLogo from '../Assets/assets rayyan instructor/rayan_driving_instructor_logo.webp';
-import rayanProfile from '../Assets/rayan-profile.png';
-import rayanLessons from '../Assets/rayan-lessons.png';
-import rayanReschedule from '../Assets/rayan-reschedule.png';
-import rayanRequests from '../Assets/rayan-requests.png';
-import rayanStatus from '../Assets/rayan-status.png';
-import rayanBooking from '../Assets/rayan-booking.png';
+import rayanProfile from '../Assets/rayan-profile.webp';
+import rayanLessons from '../Assets/rayan-lessons.webp';
+import rayanReschedule from '../Assets/rayan-reschedule.webp';
+import rayanRequests from '../Assets/rayan-requests.webp';
+import rayanStatus from '../Assets/rayan-status.webp';
+import rayanBooking from '../Assets/rayan-booking.webp';
+import controlThumb01 from '../Assets/thumbs/novus-control-screen-01.webp';
+import controlThumb02 from '../Assets/thumbs/novus-control-screen-02.webp';
+import controlThumb03 from '../Assets/thumbs/novus-control-screen-03.webp';
+import controlThumb04 from '../Assets/thumbs/novus-control-screen-04.webp';
+import controlThumb05 from '../Assets/thumbs/novus-control-screen-05.webp';
+import controlThumb06 from '../Assets/thumbs/novus-control-screen-06.webp';
+import controlThumb07 from '../Assets/thumbs/novus-control-screen-07.webp';
+import controlThumb08 from '../Assets/thumbs/novus-control-screen-08.webp';
+import controlThumb09 from '../Assets/thumbs/novus-control-screen-09.webp';
+import controlThumb10 from '../Assets/thumbs/novus-control-screen-10.webp';
+import controlThumb11 from '../Assets/thumbs/novus-control-screen-11.webp';
+import controlThumb12 from '../Assets/thumbs/novus-control-screen-12.webp';
+import controlThumb13 from '../Assets/thumbs/novus-control-screen-13.webp';
+import controlThumb14 from '../Assets/thumbs/novus-control-screen-14.webp';
+import controlThumb15 from '../Assets/thumbs/novus-control-screen-15.webp';
+import controlThumb16 from '../Assets/thumbs/novus-control-screen-16.webp';
+import controlThumb17 from '../Assets/thumbs/novus-control-screen-17.webp';
+import proPatrolThumb from '../Assets/thumbs/novus-pro-patrol.webp';
+import proReportingThumb from '../Assets/thumbs/novus-pro-reporting.webp';
+import rayanProfileThumb from '../Assets/thumbs/rayan-profile.webp';
+import rayanLessonsThumb from '../Assets/thumbs/rayan-lessons.webp';
+import rayanRescheduleThumb from '../Assets/thumbs/rayan-reschedule.webp';
+import rayanRequestsThumb from '../Assets/thumbs/rayan-requests.webp';
+import rayanStatusThumb from '../Assets/thumbs/rayan-status.webp';
+import rayanBookingThumb from '../Assets/thumbs/rayan-booking.webp';
 import './Projects.css';
 
 const imageMap = {
@@ -53,6 +78,37 @@ const imageMap = {
   ],
   pro: [proPatrol, proReporting],
   rayan: [rayanProfile, rayanLessons, rayanReschedule, rayanRequests, rayanStatus, rayanBooking],
+};
+
+const thumbMap = {
+  control: [
+    controlThumb01,
+    controlThumb02,
+    controlThumb03,
+    controlThumb04,
+    controlThumb05,
+    controlThumb06,
+    controlThumb07,
+    controlThumb08,
+    controlThumb09,
+    controlThumb10,
+    controlThumb11,
+    controlThumb12,
+    controlThumb13,
+    controlThumb14,
+    controlThumb15,
+    controlThumb16,
+    controlThumb17,
+  ],
+  pro: [proPatrolThumb, proReportingThumb],
+  rayan: [
+    rayanProfileThumb,
+    rayanLessonsThumb,
+    rayanRescheduleThumb,
+    rayanRequestsThumb,
+    rayanStatusThumb,
+    rayanBookingThumb,
+  ],
 };
 
 const logoMap = {
@@ -96,6 +152,7 @@ const AppProject = ({ project, index }) => {
   const deviceY = useTransform(scrollYProgress, [0, 1], [18, -18]);
   const deviceRotate = useTransform(scrollYProgress, [0, 1], [2.5, -2.5]);
   const images = imageMap[project.imageSet] || [];
+  const thumbs = thumbMap[project.imageSet] || [];
   const logo = logoMap[project.logoKey];
   const activeGallery = project.gallery?.[activeImage];
 
@@ -225,8 +282,6 @@ const AppProject = ({ project, index }) => {
         {images.length > 0 && (
           <>
             <div className="app-project__device-stage">
-              <div className="app-project__device-orbit app-project__device-orbit--one" aria-hidden="true" />
-              <div className="app-project__device-orbit app-project__device-orbit--two" aria-hidden="true" />
               <motion.div
                 className="app-project__device"
                 style={{
@@ -264,7 +319,7 @@ const AppProject = ({ project, index }) => {
             {project.gallery?.length > 1 && (
               <>
                 <p className="app-project__gallery-hint">
-                  Browse all {project.gallery.length} screens · swipe or scroll to explore
+                  Browse all {project.gallery.length} screens · tap one to preview it on the device
                 </p>
                 <div className="app-project__thumbs" aria-label={`${project.name} screenshots`}>
                   {project.gallery.map((item, thumbIndex) => (
@@ -277,7 +332,7 @@ const AppProject = ({ project, index }) => {
                       aria-pressed={activeImage === thumbIndex}
                     >
                       <img
-                        src={images[thumbIndex]}
+                        src={thumbs[thumbIndex]}
                         alt=""
                         className="app-project__thumb-image"
                         loading="lazy"

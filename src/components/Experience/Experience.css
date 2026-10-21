@@ -1,5 +1,5 @@
 .experience {
-  padding: 120px 32px;
+  padding: clamp(84px, 9vw, 124px) 32px;
   position: relative;
   overflow: hidden;
 }
@@ -13,13 +13,13 @@
   width: 340px;
   height: 340px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(75, 110, 255, 0.07) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(18, 104, 121, 0.06) 0%, transparent 70%);
   filter: blur(50px);
   pointer-events: none;
 }
 
 .experience__inner {
-  max-width: 1200px;
+  max-width: 1240px;
   margin: 0 auto;
   opacity: 0;
   transform: translateY(30px);
@@ -43,8 +43,8 @@
 
 .timeline__item {
   display: grid;
-  grid-template-columns: 32px 1fr;
-  gap: 24px;
+  grid-template-columns: 24px minmax(0, 1fr);
+  gap: 20px;
 }
 
 .timeline__line {
@@ -58,8 +58,8 @@
   width: 13px;
   height: 13px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
-  box-shadow: 0 0 0 6px rgba(75, 110, 255, 0.12), 0 0 18px rgba(75, 110, 255, 0.2);
+  background: #167b78;
+  box-shadow: 0 0 0 5px rgba(22, 128, 113, 0.11);
   flex-shrink: 0;
   animation: subtlePulse 3s ease-in-out infinite;
 }
@@ -69,18 +69,17 @@
   flex: 1;
   min-height: 42px;
   margin-top: 10px;
-  background: linear-gradient(to bottom, rgba(75, 110, 255, 0.34) 0%, rgba(28, 196, 186, 0.2) 50%, rgba(255, 255, 255, 0.08) 100%);
+  background: linear-gradient(to bottom, rgba(18, 104, 121, 0.3) 0%, rgba(22, 128, 113, 0.08) 100%);
   border-radius: 999px;
 }
 
 .timeline__card {
   margin-bottom: 22px;
-  padding: 28px;
-  border-radius: 28px;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.03) 100%),
-    rgba(11, 16, 30, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: clamp(22px, 3vw, 30px);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 32px rgba(25, 55, 57, 0.055);
   transition: var(--transition);
   position: relative;
   overflow: hidden;
@@ -88,7 +87,7 @@
 
 .timeline__card:hover {
   transform: translateX(4px);
-  border-color: rgba(120, 147, 255, 0.22);
+  border-color: rgba(18, 104, 121, 0.22);
 }
 
 /* Gradient glow on hover */
@@ -96,7 +95,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 0% 50%, rgba(75, 110, 255, 0.05) 0%, transparent 60%);
+  background: radial-gradient(circle at 0% 50%, rgba(18, 104, 121, 0.05) 0%, transparent 60%);
   opacity: 0;
   transition: opacity 0.4s ease;
   pointer-events: none;
@@ -119,6 +118,7 @@
   font-family: var(--font-display);
   font-size: 28px;
   line-height: 1.05;
+  letter-spacing: -0.035em;
   color: var(--text-primary);
   margin-bottom: 6px;
 }
@@ -126,7 +126,7 @@
 .timeline__role {
   font-size: 15px;
   font-weight: 600;
-  color: var(--accent-soft);
+  color: #176273;
 }
 
 .timeline__meta {
@@ -137,7 +137,7 @@
 
 .timeline__period {
   font-size: 13px;
-  color: var(--text-muted);
+  color: #53696d;
 }
 
 .timeline__type {
@@ -153,15 +153,15 @@
 }
 
 .timeline__type--full {
-  color: var(--accent-soft);
-  background: rgba(75, 110, 255, 0.1);
-  border: 1px solid rgba(120, 147, 255, 0.2);
+  color: #175c68;
+  background: rgba(18, 104, 121, 0.08);
+  border: 1px solid rgba(18, 104, 121, 0.18);
 }
 
 .timeline__type--intern {
-  color: #ffd166;
-  background: rgba(255, 209, 102, 0.1);
-  border: 1px solid rgba(255, 209, 102, 0.24);
+  color: #754c00;
+  background: rgba(255, 209, 102, 0.24);
+  border: 1px solid rgba(117, 76, 0, 0.24);
 }
 
 .timeline__summary {
@@ -185,7 +185,7 @@
 }
 
 .timeline__achievements li::marker {
-  color: var(--accent);
+  color: #168071;
 }
 
 .timeline__tags {
@@ -194,31 +194,23 @@
   gap: 8px;
 }
 
-.timeline__tag {
-  display: inline-flex;
-  align-items: center;
-  min-height: 34px;
-  padding: 0 12px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.04);
-  color: var(--text-primary);
-  font-size: 12px;
-  font-weight: 500;
-}
-
 @media (max-width: 640px) {
   .experience {
-    padding: 88px 24px;
+    padding: 78px 20px;
   }
 
   .timeline__item {
-    grid-template-columns: 20px 1fr;
-    gap: 16px;
+    grid-template-columns: 16px minmax(0, 1fr);
+    gap: 12px;
   }
 
   .timeline__card {
-    padding: 22px;
+    padding: 19px;
+  }
+
+  .timeline__card-top {
+    display: grid;
+    gap: 12px;
   }
 
   .timeline__company {
@@ -227,5 +219,6 @@
 
   .timeline__meta {
     justify-items: start;
+    gap: 7px;
   }
 }

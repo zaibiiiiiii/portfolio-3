@@ -4,12 +4,6 @@ import { focusAreas, heroStats, personalInfo } from '../../utils/data';
 const Hero = () => {
   return (
     <section id="hero" className="hero">
-      <div className="hero__grid-lines" aria-hidden="true">
-        {[...Array(7)].map((_, index) => (
-          <span key={index} className="hero__grid-line" />
-        ))}
-      </div>
-
       <div className="hero__inner">
         <div className="hero__content">
           <div className="hero__eyebrow animate-fade-up" style={{ animationDelay: '0.05s', opacity: 0 }}>
@@ -41,6 +35,9 @@ const Hero = () => {
             </a>
             <a href={`mailto:${personalInfo.email}`} className="hero__btn hero__btn--secondary">
               Start a Conversation
+            </a>
+            <a href={personalInfo.cvUrl} className="hero__btn hero__btn--secondary" download>
+              Download CV
             </a>
           </div>
 
