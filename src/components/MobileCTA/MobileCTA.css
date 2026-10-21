@@ -55,10 +55,6 @@
     display: flex;
     pointer-events: none;
   }
-
-  main {
-    padding-bottom: 76px;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

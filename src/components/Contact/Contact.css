@@ -1,5 +1,5 @@
 .contact {
-  padding: clamp(96px, 10vw, 150px) 32px clamp(72px, 8vw, 110px);
+  padding: clamp(96px, 10vw, 150px) 32px 0;
   position: relative;
 }
 
@@ -430,13 +430,6 @@
   font-weight: 600;
 }
 
-.footer__stack {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
-}
-
 @media (max-width: 960px) {
   .contact__inner,
   .contact__card-meta {
@@ -453,7 +446,7 @@
 
 @media (max-width: 640px) {
   .contact {
-    padding: 80px 20px 56px;
+    padding: 80px 20px 0;
   }
 
   .contact__actions {
@@ -495,9 +488,5 @@
   .footer__bottom {
     align-items: flex-start;
     flex-direction: column;
-  }
-
-  .footer__stack {
-    justify-content: flex-start;
   }
 }

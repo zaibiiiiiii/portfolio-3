@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import useIntersectionObserver from '../../hooks/useIntersectionObserver';
-import TechBadge from '../TechBadge/TechBadge';
 import { contactChecklist, contactOptions, personalInfo } from '../../utils/data';
 import './Contact.css';
 
@@ -227,12 +226,6 @@ const Contact = () => {
           <p className="footer__text">
             © {new Date().getFullYear()} Syed Zohaib Kashif <span aria-hidden="true">·</span> Designed and built with care
           </p>
-          <div className="footer__stack" aria-label="Selected technologies">
-            <TechBadge label="Flutter" variant="footer" />
-            <TechBadge label="React Native" variant="footer" />
-            <TechBadge label="Firebase" variant="footer" />
-            <TechBadge label="Socket.IO" variant="footer" />
-          </div>
         </div>
       </footer>
     </section>

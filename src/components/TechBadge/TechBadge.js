@@ -259,12 +259,9 @@ const TechBadge = ({ label, variant = 'tag' }) => {
   const icon = iconConfig ? iconLibrary[iconConfig.icon] : null;
   const abbreviation = getAbbreviation(label);
 
-  // Official brand marks keep their real colors on light surfaces and
-  // flip to light ink on dark surfaces (footer) to stay visible.
-  const ink = brand
-    ? (variant === 'footer' ? BRAND_DARK_INK : brand.hex)
-    : iconConfig?.ink || '#D1D9E8';
-  const glowHex = brand && variant !== 'footer' ? brand.hex : BRAND_DARK_INK;
+  // Official brand marks keep their real brand colors.
+  const ink = brand ? brand.hex : iconConfig?.ink || '#D1D9E8';
+  const glowHex = brand ? brand.hex : BRAND_DARK_INK;
 
   return (
     <span

@@ -80,15 +80,13 @@
   border-color: color-mix(in srgb, var(--tech-ink) 40%, transparent);
 }
 
-.tech-badge--tag .tech-badge__icon,
-.tech-badge--footer .tech-badge__icon {
+.tech-badge--tag .tech-badge__icon {
   width: 18px;
   height: 18px;
   border-radius: 5px;
 }
 
-.tech-badge--tag .tech-badge__icon svg,
-.tech-badge--footer .tech-badge__icon svg {
+.tech-badge--tag .tech-badge__icon svg {
   width: 11px;
   height: 11px;
 }
@@ -97,23 +95,4 @@
   font-size: 12px;
   font-weight: 500;
   color: var(--text-secondary);
-}
-
-/* ─── Footer variant (on dark) ─── */
-.tech-badge--footer {
-  min-height: 30px;
-  padding: 4px 11px 4px 5px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.tech-badge--footer:hover {
-  border-color: color-mix(in srgb, var(--tech-ink) 45%, transparent);
-}
-
-.tech-badge--footer .tech-badge__label {
-  font-size: 12px;
-  font-weight: 500;
-  color: #c3d2d0;
 }
